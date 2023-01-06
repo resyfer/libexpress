@@ -1,0 +1,14 @@
+Compiling src/express.c file
+Compiling src/util.c file
+Compiling src/req.c file
+Compiling src/router.c file
+Compiling src/res.c file
+Building Final Shared Object
+Done
+Installing...
+Done!
+------------
+[1;33m
+Shutting down Server
+[0m[1;32mServer Closed
+[0m
