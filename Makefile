@@ -38,7 +38,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR) 2> /dev/null
 
 run: install
-	@$(CC) $(CFLAGS) -o ./examples/$(TEST).o ./examples/$(TEST).c -lexpress -lcol -lasync -ltpool -lqueue -lhmap -lstack
+	@$(CC) $(CFLAGS) -o ./examples/$(TEST).o ./examples/$(TEST).c -lexpress -lcol -lasync -ltpool -lqueue -lhmap -lvector
 	@echo "------------"
 	@./examples/$(TEST).o
 

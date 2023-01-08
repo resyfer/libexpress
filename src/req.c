@@ -18,7 +18,7 @@ parse_req(char *req_str, int size)
 	req->path = NULL;
 	req->queries = NULL;
 	req->params = NULL;
-	req->middleware_stack = stack_new();
+	req->c_queue = queue_new();
 
 	char temp[MAX_SIZE] = {0};
 

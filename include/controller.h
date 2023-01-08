@@ -7,6 +7,6 @@
 
 void next(res_t *res);
 
-typedef void* (*controller_t) (req_t *req, res_t *res /*, err_t err */);
+typedef void (controller_t) (req_t *req, res_t *res /*, err_t err */);
 
 #endif

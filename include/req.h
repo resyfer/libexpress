@@ -2,7 +2,7 @@
 #define __LIBEXPRESS_REQ_H 1
 
 #include <libhmap/hmap.h>
-#include <libstack/stack.h>
+#include <libqueue/queue.h>
 
 typedef struct {
 	char *method;
@@ -11,7 +11,7 @@ typedef struct {
 	hmap_t *headers;
 	hmap_t *params;
 	char *body;
-	stack_t *middleware_stack;
+	queue_t *c_queue; //controller queue, includes middlewares as well
 } req_t;
 
 req_t* parse_req(char *req_str, int size);

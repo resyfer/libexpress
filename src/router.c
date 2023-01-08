@@ -4,14 +4,19 @@
 
 /* Find */
 void
-add_middlewares_to_stack(route_t *route, req_t *req)
+vpush_to_call_queue(route_t *route, req_t *req)
 {
-	if(!route->middlewares) {
+	if(!route->controllers) {
 		return;
 	}
 
-	for(int i = 0; route->middlewares[i] != 0; i++) {
-		stack_push(req->middleware_stack, (void*) route->middlewares[i]);
+	int n = vec_size(route->controllers);
+	for(u_int32_t i = 0; i<n; i++) {
+		controller_t *controller = vec_get(route->controllers, i);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		queue_push(req->c_queue, (void*) controller);
 	}
 }
 
@@ -23,11 +28,12 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 
 	int n = strlen(k);
 
-
 	// If extra / is used in the path
 	if(n == 0 && *l != 0) {
 		return find_route_r(router, req, l, k);
 	}
+
+	char *current_param = NULL;
 
 	router_t *router_next = NULL;
 
@@ -36,7 +42,6 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		route_t *route;
 
 		if(!router->routes) {
-			printf("404\n");
 			return NULL;
 		}
 
@@ -59,8 +64,9 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		// Already taken care of by return
 
 		if(route) {
-			add_middlewares_to_stack(route, req);
+			vpush_to_call_queue(route, req);
 		}
+
 
 		return route;
 	}
@@ -109,14 +115,11 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		route_t *middleware_route = hmap_get(router_next->routes, "*");
 
 		if(middleware_route) {
-			add_middlewares_to_stack(middleware_route, req);
+			vpush_to_call_queue(middleware_route, req);
 		}
 	}
 
 	return ret;
-
-	//TODO: Remove distinction between middlewares and controllers by using
-	//TODO: variadic functions
 }
 
 route_t*
@@ -126,7 +129,6 @@ find_route(router_t *router, req_t *req)
 	char *p = malloc(sizeof(char) * (n+1));
 	strcpy(p, req->path);
 
-
 	router_t *temp = router;
 	char *k = p, *l;
 
@@ -134,11 +136,8 @@ find_route(router_t *router, req_t *req)
 }
 
 /* Add */
-void route(router_t *router,
-		const char *path,
-		const char  *method,
-		middleware_t *middlewares,
-		controller_t controller)
+void
+vroute(router_t *router, const char *path, const char *method, vector_t *controllers)
 {
 
 	char *p = malloc(sizeof(char) * (strlen(path) + 1));
@@ -193,8 +192,7 @@ void route(router_t *router,
 	}
 
 	route_t *route = malloc(sizeof(route_t));
-	route->middlewares = middlewares;
-	route->controller = controller;
+	route->controllers = controllers;
 
 	if(!temp->routes) {
 		temp->routes = hmap_new_cap(3);
@@ -205,34 +203,102 @@ void route(router_t *router,
 	free(p);
 }
 
-void route_get(router_t *router,
-		const char *path,
-		middleware_t *middlewares,
-		controller_t controller)
+void route(router_t *router, const char *path, char* method, ...)
 {
-	route(router, path, "GET", middlewares, controller);
+	va_list args;
+	va_start(args, method);
+
+	vector_t* controllers = vec_new_size(1);
+
+	while(1) {
+		controller_t *controller = va_arg(args, controller_t*);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		vec_push_back(controllers, (void*) controller);
+	}
+	vec_shrink(controllers);
+
+	vroute(router, path, method, controllers);
+	va_end(args);
 }
 
-void route_post(router_t *router,
-		const char *path,
-		middleware_t *middlewares,
-		controller_t controller)
+void route_get(router_t *router, const char *path, ...)
 {
-	route(router, path, "POST", middlewares, controller);
+	va_list args;
+	va_start(args, path);
+
+	vector_t* controllers = vec_new();
+
+	while(1) {
+		controller_t *controller = va_arg(args, controller_t*);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		vec_push_back(controllers, (void*) controller);
+	}
+	vec_shrink(controllers);
+
+	vroute(router, path, "GET", controllers);
+	va_end(args);
 }
 
-void route_put(router_t *router,
-		const char *path,
-		middleware_t *middlewares,
-		controller_t controller)
+void route_post(router_t *router, const char *path, ...)
 {
-	route(router, path, "PUT", middlewares, controller);
+	va_list args;
+	va_start(args, path);
+
+	vector_t* controllers = vec_new_size(1);
+
+	while(1) {
+		controller_t *controller = va_arg(args, controller_t*);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		vec_push_back(controllers, (void*) controller);
+	}
+	vec_shrink(controllers);
+
+	vroute(router, path, "POST", controllers);
+	va_end(args);
 }
 
-void route_delete(router_t *router,
-		const char *path,
-		middleware_t *middlewares,
-		controller_t controller)
+void route_put(router_t *router, const char *path, ...)
 {
-	route(router, path, "DELETE", middlewares, controller);
+	va_list args;
+	va_start(args, path);
+
+	vector_t* controllers = vec_new_size(1);
+
+	while(1) {
+		controller_t *controller = va_arg(args, controller_t*);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		vec_push_back(controllers, (void*) controller);
+	}
+	vec_shrink(controllers);
+
+	vroute(router, path, "PUT", controllers);
+	va_end(args);
+}
+
+void route_delete(router_t *router, const char *path, ...)
+{
+	va_list args;
+	va_start(args, path);
+
+	vector_t* controllers = vec_new_size(1);
+
+	while(1) {
+		controller_t *controller = va_arg(args, controller_t*);
+		if(controller == ROUTE_END) {
+			break;
+		}
+		vec_push_back(controllers, (void*) controller);
+	}
+	vec_shrink(controllers);
+
+	vroute(router, path, "DELETE", controllers);
+	va_end(args);
 }

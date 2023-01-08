@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <stdio.h>
 
-void* controller_404(req_t *req, res_t *res) {
+void controller_404(req_t *req, res_t *res) {
 	res->status = 404;
 	hmap_push(res->headers, "Content-Type", "text/plain");
 	res_send(res, "404");
@@ -22,20 +22,6 @@ server_new()
 	app->path = "";
 	app->routes = NULL;
 	app->child_routers = hmap_new_cap(5);
-
-	/* 404 CatchAll */
-	router_t *catch_all_router = malloc(sizeof(router_t));
-	catch_all_router->path = malloc(2 * sizeof(char));
-	strcpy(catch_all_router->path, "*");
-	catch_all_router->routes = hmap_new_cap(3);
-	catch_all_router->child_routers = NULL;
-
-	route_t *route_404 = malloc(sizeof(route_t));
-	route_404->middlewares = NULL;
-	route_404->controller = controller_404;
-
-	hmap_push(catch_all_router->routes, catch_all_router->path /* both are "*" */, (void*) route_404);
-	hmap_push(app->child_routers, catch_all_router->path, (void*) catch_all_router);
 
 	return app;
 }
@@ -70,9 +56,10 @@ connection_handler(void* args)
 
 	route_t *route = find_route(con_args->server, req);
 
+	// 404
 	if(!route) {
 		router_t *catch_all = hmap_get(server->child_routers, "*");
-		route = hmap_get(catch_all->routes, "*");
+		queue_push(req->c_queue, controller_404);
 	}
 
 	res_t *res = malloc(sizeof(res));
@@ -84,16 +71,23 @@ connection_handler(void* args)
 	res->client = *client;
 
 	bool complete = false;
+
 	while(1) {
+		controller_t *controller = queue_pop(req->c_queue);
 
-		middleware_t mid = stack_pop(req->middleware_stack);
+		if(!controller) {
+			if(res->next) {
+				print_error("\nCan't use next on last controller\n");
+				exit(1);
+			} else if(!res->sent) {
+				print_error("\nResponse is not sent by end of final controller\n");
+				exit(1);
+			}
 
-		if(!mid) {
-			complete = true;
 			break;
 		}
 
-		mid(req, res);
+		controller(req, res);
 
 		if(res->sent) {
 			break;
@@ -102,23 +96,21 @@ connection_handler(void* args)
 		if(res->next) {
 			res->next = false;
 		} else {
-			break;
+			print_error("\nNeither `next` was reached, nor any responses were sent\n");
+			exit(1);
 		}
-
 	}
 
-	if(complete) {
-		route->controller(req, res);
+	if(res->sent) {
+		printf("%s %s %d\n", req->method, req->path, res->status);
 	}
-
-	printf("%s %d\n", req->path, res->status);
 
 	close(*client);
 	free(client);
 }
 
 void
-server_listen(server_t *server, port_t port, bool force_port)
+server_listen(server_t *server, port_t port)
 {
 	async_init();
 
@@ -130,8 +122,7 @@ server_listen(server_t *server, port_t port, bool force_port)
 		exit(1);
 	}
 
-	if (force_port &&
-		setsockopt(server_socket,
+	if (setsockopt(server_socket,
 			SOL_SOCKET, SO_REUSEADDR, &(int){1},
 			sizeof(int)) < 0) {
 		print_error("Error acquring port\n");
