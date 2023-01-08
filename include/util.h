@@ -7,6 +7,6 @@ void print_ok(const char *msg);
 void print_warning(const char *warning);
 void print_error(const char *err);
 
-char* token(char* s, char c);
+char* tokenize(char* s, char c);
 
 #endif

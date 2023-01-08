@@ -27,10 +27,10 @@ print_error(const char *err)
 	print_info(err, RED);
 }
 
+// This attempts to modify the string, so please do not use string literals
 char*
-token(char* s, char c)
+tokenize(char* s, char c)
 {
-	// This attempts to modify the string, so please do not use string literals
 	char *k = s;
 	for(k; *k != c && *k != 0; k++);
 

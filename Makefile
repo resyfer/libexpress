@@ -38,9 +38,11 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR) 2> /dev/null
 
 run: install
+	@ulimit -c unlimited
 	@$(CC) $(CFLAGS) -o ./examples/$(TEST).o ./examples/$(TEST).c -lexpress -lcol -lasync -ltpool -lqueue -lhmap -lvector
 	@echo "------------"
 	@./examples/$(TEST).o
+	@ulimit -c 0
 
 install: $(NAME).so $(HEAD_DIR)/$(ENTRY).h
 	@echo "Installing..."

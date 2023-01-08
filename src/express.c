@@ -23,6 +23,8 @@ server_new()
 	app->routes = NULL;
 	app->child_routers = hmap_new_cap(5);
 
+	route(app, "*", "*", controller_404);
+
 	return app;
 }
 
@@ -55,12 +57,6 @@ connection_handler(void* args)
 	req_t *req = parse_req(buf, k);
 
 	route_t *route = find_route(con_args->server, req);
-
-	// 404
-	if(!route) {
-		router_t *catch_all = hmap_get(server->child_routers, "*");
-		queue_push(req->c_queue, controller_404);
-	}
 
 	res_t *res = malloc(sizeof(res));
 	res->status = 200; // Default value
