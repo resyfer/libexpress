@@ -15,5 +15,6 @@ typedef struct {
 } req_t;
 
 req_t* parse_req(char *req_str, int size);
+char* get_param(req_t* req, char* param);
 
 #endif

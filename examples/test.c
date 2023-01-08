@@ -1,9 +1,9 @@
 #include <libexpress/express.h>
 #include <stdio.h>
+#include <string.h>
 
 void adios(req_t *req, res_t *res) {
 	printf("-> %s\n", hmap_get(req->params, "id"));
-	//TODO:
 	res_send(res, "Adios\n");
 }
 
@@ -20,8 +20,8 @@ void middle(req_t *req, res_t *res) {
 int main() {
 	server_t *app = server_new();
 
-	route_get(app, "/hello/:id/world", middle, adios, ROUTE_END);
-	route_get(app, "/hello/world", middle, hi, ROUTE_END);
+	route_get(app, "/hello/:id", middle, adios, ROUTE_END);
+	route_get(app, "/hello/*", middle, hi, ROUTE_END);
 	route_get(app, "/hello/bye", hi, ROUTE_END);
 	route_get(app, "/foo", middle, ROUTE_END);
 	route_get(app, "/", hi, ROUTE_END);

@@ -18,7 +18,7 @@ OBJFILES := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCFILES))
 DEPFILES := $(patsubst $(SRC_DIR)/%.c,$(DEP_DIR)/%.d,$(SRCFILES))
 
 CC:=gcc
-CFLAGS:=-std=c11 $(addprefix -I,$(INC_DIR))
+CFLAGS:=-std=gnu18 $(addprefix -I,$(INC_DIR))
 INSTALL:=install
 
 all: $(NAME).so

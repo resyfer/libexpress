@@ -1,6 +1,6 @@
 #include <include/router.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 /* Find */
 void
@@ -33,8 +33,6 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		return find_route_r(router, req, l, k);
 	}
 
-	char *current_param = NULL;
-
 	router_t *router_next = NULL;
 
 	// End of path
@@ -63,6 +61,7 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		// Get 404
 		// Already taken care of by return
 
+		// Final Controller
 		if(route) {
 			vpush_to_call_queue(route, req);
 		}
@@ -101,7 +100,9 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 	}
 
 	// For wildcard match
+	bool wildcard = false;
 	if(!router_next) {
+		wildcard = true;
 		router_next = hmap_get(router->child_routers, "*");
 	}
 
@@ -109,13 +110,31 @@ find_route_r(router_t *router, req_t *req, char* k, char *l)
 		return NULL;
 	}
 
-	route_t *ret = find_route_r(router_next, req, l, k);
+	route_t *ret;
+
+	if(wildcard) {
+		ret = hmap_get(router_next->routes, )
+	} else {
+		ret = find_route_r(router_next, req, l, k);
+	}
 
 	if(ret) {
+		// Middlewares
 		route_t *middleware_route = hmap_get(router_next->routes, "*");
-
 		if(middleware_route) {
 			vpush_to_call_queue(middleware_route, req);
+		}
+
+		// Params
+		if(router_next->path[0] == ':') {
+			char *key = strdup(router_next->path + 1);
+			char *value = strdup(k);
+
+			if(!req->params) {
+				req->params = hmap_new_cap(2);
+			}
+
+			hmap_push(req->params, key, value);
 		}
 	}
 
@@ -208,7 +227,7 @@ void route(router_t *router, const char *path, char* method, ...)
 	va_list args;
 	va_start(args, method);
 
-	vector_t* controllers = vec_new_size(1);
+	vector_t* controllers = vec_new();
 
 	while(1) {
 		controller_t *controller = va_arg(args, controller_t*);
@@ -248,7 +267,7 @@ void route_post(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new_size(1);
+	vector_t* controllers = vec_new();
 
 	while(1) {
 		controller_t *controller = va_arg(args, controller_t*);
@@ -268,7 +287,7 @@ void route_put(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new_size(1);
+	vector_t* controllers = vec_new();
 
 	while(1) {
 		controller_t *controller = va_arg(args, controller_t*);
@@ -288,7 +307,7 @@ void route_delete(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new_size(1);
+	vector_t* controllers = vec_new();
 
 	while(1) {
 		controller_t *controller = va_arg(args, controller_t*);
