@@ -5,7 +5,7 @@
 hmap_t *status_codes;
 
 void
-status_codes_init()
+status_codes_init(void)
 {
 	status_codes = hmap_new_cap(15);
 
@@ -103,4 +103,23 @@ res_send(res_t *res, char* body)
 
 	// Sending
 	write(res->client, response, sizeof(char) * (strlen(response) + 1));
+}
+
+/* Utility */
+void
+set_res_body(res_t* res, char* body)
+{
+	res->body = body;
+}
+
+void
+set_res_header(res_t* res, const char* header, char* value)
+{
+	hmap_push(res->headers, header, value);
+}
+
+char*
+get_res_header(res_t* res, const char* header)
+{
+	return hmap_get(res->headers, header);
 }

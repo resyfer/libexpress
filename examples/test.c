@@ -2,8 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
+void blah(req_t *req, res_t *res) {
+	res_send(res, get_req_param(req, "id"));
+}
+
 void adios(req_t *req, res_t *res) {
-	res_send(res, hmap_get(req->params, "id"));
+	res_send(res, get_req_param(req, "id"));
 }
 
 void hi(req_t *req, res_t *res) {
@@ -19,13 +23,9 @@ int main() {
 	server_t *app = server_new();
 
 	route_get(app, "/hello/:id/world", adios, ROUTE_END);
+	route_post(app, "/hello/:id/world", blah, ROUTE_END);
 	route_get(app, "/hello/*", middle, hi, ROUTE_END);
 	route_get(app, "/hello/bye", hi, ROUTE_END);
-
-	route_get(app, "/foo", middle, ROUTE_END);
-	// deliberate bug of just giving a middleware
-	// not no ending controllers
-
 	route_get(app, "/", hi, ROUTE_END);
 
 	server_listen(app, 3000);

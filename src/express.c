@@ -14,7 +14,7 @@ void controller_404(req_t *req, res_t *res) {
 }
 
 server_t*
-server_new()
+server_new(void)
 {
 	status_codes_init();
 

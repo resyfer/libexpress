@@ -1,5 +1,5 @@
 #ifndef __ROUTER_LIBEXPRESS_H
-#define __ROUTER_LIBEXPRESS_H
+#define __ROUTER_LIBEXPRESS_H 1
 
 #include <sys/types.h>
 #include <stdarg.h>

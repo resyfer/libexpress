@@ -140,3 +140,40 @@ parse_req(char *req_str, int size)
 
 	return req;
 }
+
+/* Utility */
+char*
+get_req_body(req_t* req)
+{
+	return req->body;
+}
+
+char*
+get_req_header(req_t* req, const char* header)
+{
+	return hmap_get(req->headers, header);
+}
+
+char*
+get_req_method(req_t* req)
+{
+	return req->method;
+}
+
+char*
+get_req_param(req_t* req, const char* param)
+{
+	return hmap_get(req->params, param);
+}
+
+char*
+get_req_path(req_t* req)
+{
+	return req->path;
+}
+
+char*
+get_req_query(req_t* req, const char* query)
+{
+	return hmap_get(req->queries, query);
+}

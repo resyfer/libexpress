@@ -13,9 +13,14 @@ typedef struct {
 	int client;
 } res_t;
 
-void status_codes_init();
+void status_codes_init(void);
 
 void res_send(res_t *res, char* body);
 // void res_send_file(res_t *res, const char *path);
+
+/* Utility */
+void set_res_body(res_t* res, char* body);
+void set_res_header(res_t* res, const char* header, char* value);
+char* get_res_header(res_t* res, const char* header);
 
 #endif

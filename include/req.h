@@ -15,6 +15,15 @@ typedef struct {
 } req_t;
 
 req_t* parse_req(char *req_str, int size);
-char* get_param(req_t* req, char* param);
+
+/* Utility */
+char* get_req_body(req_t* req);
+char* get_req_header(req_t* req, const char* header);
+char* get_req_method(req_t* req);
+char* get_req_param(req_t* req, const char* param);
+char* get_req_path(req_t* req);
+char* get_req_query(req_t* req, const char* query);
+
+// TODO: Add instructions in docs for iterating through maps
 
 #endif

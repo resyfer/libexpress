@@ -1,5 +1,5 @@
 #ifndef __LIBEXPRESS_UTIL_H
-#define __LIBEXPRESS_UTIL_H
+#define __LIBEXPRESS_UTIL_H 1
 
 #include <libcol/col.h>
 
