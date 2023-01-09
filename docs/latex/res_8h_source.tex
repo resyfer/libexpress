@@ -1,0 +1,37 @@
+\hypertarget{res_8h_source}{}\doxysection{res.\+h}
+\label{res_8h_source}\index{include/res.h@{include/res.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_LIBEXPRESS\_RES\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_LIBEXPRESS\_RES\_H 1}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <libhmap/hmap.h>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef \_\_BASE\_\_}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define \_\_BASE\_\_ "{}"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{12     \textcolor{keywordtype}{int} status;}
+\DoxyCodeLine{13     hmap\_t *headers;}
+\DoxyCodeLine{14     \textcolor{keywordtype}{char} *body;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{bool} sent;}
+\DoxyCodeLine{16     \textcolor{keywordtype}{bool} next; \textcolor{comment}{// To transfer control to the next middleware}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} client;}
+\DoxyCodeLine{18 \} \mbox{\hyperlink{structres__t}{res\_t}};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keywordtype}{void} status\_codes\_init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{21 \textcolor{keywordtype}{void} mime\_init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keywordtype}{void} res\_send(\mbox{\hyperlink{structres__t}{res\_t}} *res, \textcolor{keywordtype}{char}* body);}
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} res\_send\_file(\mbox{\hyperlink{structres__t}{res\_t}} *res, \textcolor{keywordtype}{char} *path);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/* Utility */}}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} set\_res\_body(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keywordtype}{char}* body);}
+\DoxyCodeLine{28 \textcolor{keywordtype}{void} set\_res\_header(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header, \textcolor{keywordtype}{char}* value);}
+\DoxyCodeLine{29 \textcolor{keywordtype}{char}* get\_res\_header(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

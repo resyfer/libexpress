@@ -3,12 +3,11 @@
 #include <string.h>
 
 #undef __BASE__
-#define __BASE__ "/home/resyfer/self/projects/libexpress/examples"
+#define __BASE__ "/home/resyfer/self/projects/libexpress/examples" // Give your own directories here
 
 void frontend(req_t *req, res_t *res) {
-	res_send_file(res, __BASE__ "/a.html");
+	res_send_file(res, __BASE__ "/index.html");
 }
-
 
 void adios(req_t *req, res_t *res) {
 	char *file = get_req_param(req, "file");

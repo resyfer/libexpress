@@ -153,6 +153,7 @@ res_send(res_t *res, char* body)
 	}
 
 	j += sprintf(response + j, "%s: %d\r\n", "Content-Length", strlen(body));
+
 	hmap_itr_t *itr = hmap_itr_new(res->headers);
 	hmap_node_t *node;
 	while((node = hmap_itr_adv(itr)) != NULL) {
@@ -213,7 +214,7 @@ res_send_file(res_t *res, char *file_path)
 	set_res_header(res, "Content-Type", mime);
 	res_send(res, file);
 
-	munmap(file, sb.st_size); // TODO: Cache files
+	munmap(file, sb.st_size); // TODO: Implement status code 304
 	free(path);
 
 	close(fd);

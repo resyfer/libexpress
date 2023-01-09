@@ -1,0 +1,49 @@
+\hypertarget{express_8h}{}\doxysection{include/express.h File Reference}
+\label{express_8h}\index{include/express.h@{include/express.h}}
+
+
+This contains the entry point to the library.  
+
+
+{\ttfamily \#include \char`\"{}router.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}\label{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}} 
+\#define {\bfseries MAX\+\_\+\+CON}~50
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$ \mbox{\hyperlink{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}{server\+\_\+new}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a new server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{express_8h_acd7442937af40a2b5e190b06da9adb05}\label{express_8h_acd7442937af40a2b5e190b06da9adb05}} 
+void {\bfseries server\+\_\+listen} (\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$server, port\+\_\+t port)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This contains the entry point to the library. 
+
+It contains and imports all the functions that are made public to the user.
+
+\begin{DoxyAuthor}{Author}
+Saurav Pal (resyfer) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000001}{Bug}}]No known bugs \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}\label{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}} 
+\index{express.h@{express.h}!server\_new@{server\_new}}
+\index{server\_new@{server\_new}!express.h@{express.h}}
+\doxysubsubsection{\texorpdfstring{server\_new()}{server\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$ server\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new server. 
+

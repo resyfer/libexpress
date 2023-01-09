@@ -1,0 +1,35 @@
+\hypertarget{req_8h_source}{}\doxysection{req.\+h}
+\label{req_8h_source}\index{include/req.h@{include/req.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_LIBEXPRESS\_REQ\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_LIBEXPRESS\_REQ\_H 1}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <libhmap/hmap.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <libqueue/queue.h>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{8     \textcolor{keywordtype}{char} *method;}
+\DoxyCodeLine{9     \textcolor{keywordtype}{char} *path;}
+\DoxyCodeLine{10     hmap\_t *queries;}
+\DoxyCodeLine{11     hmap\_t *headers;}
+\DoxyCodeLine{12     hmap\_t *params;}
+\DoxyCodeLine{13     \textcolor{keywordtype}{char} *body;}
+\DoxyCodeLine{14     queue\_t *c\_queue; \textcolor{comment}{//controller queue, includes middlewares as well}}
+\DoxyCodeLine{15 \} \mbox{\hyperlink{structreq__t}{req\_t}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \mbox{\hyperlink{structreq__t}{req\_t}}* parse\_req(\textcolor{keywordtype}{char} *req\_str, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/* Utility */}}
+\DoxyCodeLine{20 \textcolor{keywordtype}{char}* get\_req\_body(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{21 \textcolor{keywordtype}{char}* get\_req\_header(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
+\DoxyCodeLine{22 \textcolor{keywordtype}{char}* get\_req\_method(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{23 \textcolor{keywordtype}{char}* get\_req\_param(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* param);}
+\DoxyCodeLine{24 \textcolor{keywordtype}{char}* get\_req\_path(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{25 \textcolor{keywordtype}{char}* get\_req\_query(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* query);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{// TODO: Add instructions in docs for iterating through maps}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
