@@ -3,6 +3,7 @@
 
 #include "router.h"
 #include "util.h"
+#include <limits.h>
 
 static int server_socket;
 

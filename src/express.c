@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdio.h>
+#include <time.h>
 
 void controller_404(req_t *req, res_t *res) {
 	res->status = 404;
@@ -17,13 +18,14 @@ server_t*
 server_new(void)
 {
 	status_codes_init();
+	mime_init();
 
 	server_t *app = malloc(sizeof(server_t));
 	app->path = "";
 	app->routes = NULL;
 	app->child_routers = hmap_new_cap(5);
 
-	route(app, "*", "*", controller_404);
+	route(app, "/*", "*", controller_404);
 
 	return app;
 }
@@ -49,6 +51,7 @@ connection_handler(void* args)
 	int *client = con_args->client;
 	server_t *server = con_args->server;
 
+	clock_t start_time = clock();
 
 	char buf[MAX_SIZE] = {0};
 	int k = read(*client, buf, sizeof(buf));
@@ -97,8 +100,10 @@ connection_handler(void* args)
 		}
 	}
 
+	clock_t end_time = clock();
+
 	if(res->sent) {
-		printf("%s %s %d\n", req->method, req->path, res->status);
+		printf("%s %s %d - %f ms\n", req->method, req->path, res->status, ((double) (end_time - start_time) / CLOCKS_PER_SEC) * 1000);
 	}
 
 	close(*client);

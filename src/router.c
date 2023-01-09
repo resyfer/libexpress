@@ -33,6 +33,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		// All methods
 		if(!ret) {
 			ret = hmap_get(router->routes, "*");
+			printf("%p\n", ret);
 		}
 
 		if(!ret) {
@@ -60,7 +61,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 	}
 
 	// Params
-	if(!ret) {
+	if(!ret && strlen(token)) {
 		hmap_itr_t *itr = hmap_itr_new(router->child_routers);
 		hmap_node_t *node;
 
@@ -98,19 +99,6 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		if(middleware_route) {
 			vpush_to_call_queue(middleware_route, req);
 		}
-
-		// // Params
-		// if(next_router->path[0] == ':') {
-		// 	char *key = strdup((next_router->path) + 1);
-		// 	char *value = token;
-
-
-		// 	if(!req->params) {
-		// 		req->params = hmap_new_cap(2);
-		// 	}
-
-		// 	hmap_push(req->params, key, value);
-		// }
 	}
 
 
@@ -157,8 +145,13 @@ find_route(router_t *router, req_t *req)
 		dest_route =  find_route(router, req);
 	}
 
+	if(!dest_route && vec_size(tokens) == 0) {
+		strcpy(req->path, "/*");
+		strcpy(req->method, "*");
+		dest_route =  find_route(router, req);
+	}
+
 	if(!dest_route && !strcmp(req->method, "*")) {
-		printf("Hi\n");
 		strcpy(req->method, "*");
 		dest_route =  find_route(router, req);
 	}

@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include <libhmap/hmap.h>
 
+#ifndef __BASE__
+#define __BASE__ ""
+#endif
+
 typedef struct {
 	int status;
 	hmap_t *headers;
@@ -14,9 +18,10 @@ typedef struct {
 } res_t;
 
 void status_codes_init(void);
+void mime_init(void);
 
 void res_send(res_t *res, char* body);
-// void res_send_file(res_t *res, const char *path);
+void res_send_file(res_t *res, char *path);
 
 /* Utility */
 void set_res_body(res_t* res, char* body);

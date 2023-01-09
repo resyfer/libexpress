@@ -1,8 +1,14 @@
 #include <include/util.h>
 #include <include/res.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <errno.h>
 
 hmap_t *status_codes;
+hmap_t *mime_types;
 
 void
 status_codes_init(void)
@@ -60,6 +66,64 @@ status_codes_init(void)
 	hmap_push(status_codes, "505", (void*) "HTTP Version not supported");
 }
 
+void
+mime_init(void)
+{
+	// Extension - Mime Type
+	mime_types = hmap_new_cap(15);
+
+	// Text
+	hmap_push(mime_types, "txt", "text/plain");
+	hmap_push(mime_types, "css", "text/css");
+	hmap_push(mime_types, "csv", "text/csv");
+	hmap_push(mime_types, "html", "text/html");
+	hmap_push(mime_types, "js", "text/javascript");
+	hmap_push(mime_types, "mjs", "text/javascript");
+
+	// Font
+	hmap_push(mime_types, "ttf", "font/ttf");
+	hmap_push(mime_types, "woff", "font/woff");
+	hmap_push(mime_types, "woff2", "font/woff2");
+
+	// Audio
+	hmap_push(mime_types, "aac", "audio/aac");
+	hmap_push(mime_types, "mp3", "audio/mpeg");
+	hmap_push(mime_types, "ogg", "audio/ogg");
+	hmap_push(mime_types, "wav", "audio/wav");
+	hmap_push(mime_types, "weba", "audio/webm");
+	hmap_push(mime_types, "webm", "audio/webm");
+
+	// Image
+	hmap_push(mime_types, "gif", "image/gif");
+	hmap_push(mime_types, "jpeg", "image/jpeg");
+	hmap_push(mime_types, "jpg", "image/jpeg");
+	hmap_push(mime_types, "png", "image/png");
+	hmap_push(mime_types, "svg", "image/svg+xml");
+	hmap_push(mime_types, "webp", "image/webp");
+
+	// Application
+	hmap_push(mime_types, "bz", "application/x-bzip");
+	hmap_push(mime_types, "doc", "application/msword");
+	hmap_push(mime_types, "docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+	hmap_push(mime_types, "epub", "application/epub+zip");
+	hmap_push(mime_types, "gz", "application/gzip");
+	hmap_push(mime_types, "json", "application/json");
+	hmap_push(mime_types, "jsonld", "application/ld+json");
+	hmap_push(mime_types, "pdf", "application/pdf");
+	hmap_push(mime_types, "php", "application/x-httpd-php");
+	hmap_push(mime_types, "ppt", "application/vnd.ms-powerpoint");
+	hmap_push(mime_types, "pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+	hmap_push(mime_types, "sh", "application/x-sh");
+	hmap_push(mime_types, "tar", "application/x-tar");
+	hmap_push(mime_types, "xhtml", "application/xhtml+xml");
+	hmap_push(mime_types, "xml", "application/xml");
+	hmap_push(mime_types, "zip", "application/zip");
+
+	// Video
+	hmap_push(mime_types, "avi", "video/x-msvideo");
+	hmap_push(mime_types, "mp4", "video/mpeg");
+}
+
 
 void
 res_send(res_t *res, char* body)
@@ -85,7 +149,7 @@ res_send(res_t *res, char* body)
 	// Headers
 
 	if(!hmap_get(res->headers, "Content-Type")) {
-		hmap_push(res->headers, "Content-Type", "text/plain");
+		hmap_push(res->headers, "Content-Type", "text/plain"); // Default
 	}
 
 	j += sprintf(response + j, "%s: %d\r\n", "Content-Length", strlen(body));
@@ -103,6 +167,49 @@ res_send(res_t *res, char* body)
 
 	// Sending
 	write(res->client, response, sizeof(char) * (strlen(response) + 1));
+}
+
+void
+res_send_file(res_t *res, char *path)
+{
+	// Please provide the actual path using __BASE__ like civilized humans.
+	// I don't want pain with this commented out code for casees
+	// when it doesn't exist.
+	// char *file_path = realpath(path, NULL);
+	// if(!file_path) {
+	// 	print_error("Couldn't get file\n");
+	// 	exit(1);
+	// }
+
+	int fd = open(path, O_RDONLY);
+	struct stat sb;
+	if(fstat(fd, &sb) == -1) {
+		res->status = 404;
+		return res_send(res, "");
+	}
+
+	char *file = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+
+	// Guessing mime types from file extensions. 'file' command does a very good job
+	// at guessing them especially as it guesses css as 'text/plain' and not 'text/css' :')
+	char* ext;
+	while(1) {
+		char *token = strtok_r(path, ".", &path);
+		if(token) {
+			ext = token;
+		} else {
+			break;
+		}
+	}
+
+	char *mime = hmap_get(mime_types, ext);
+
+	set_res_header(res, "Content-Type", mime);
+	res_send(res, file);
+
+	munmap(file, sb.st_size); // TODO: Cache files
+
+	close(fd);
 }
 
 /* Utility */
