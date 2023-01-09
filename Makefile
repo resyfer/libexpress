@@ -8,6 +8,7 @@ SRC_DIR:=src
 OBJ_DIR:=obj
 DEP_DIR:=$(OBJ_DIR)
 HEAD_DIR:=include
+DOCS_DIR:=docs
 
 INC_DIR:=.
 
@@ -23,7 +24,7 @@ INSTALL:=install
 
 all: $(NAME).so
 
-.PHONY: all run
+.PHONY: all run docs clean
 
 $(NAME).so: $(OBJFILES)
 	@echo "Building Final Shared Object"
@@ -52,7 +53,14 @@ install: $(NAME).so $(HEAD_DIR)/$(ENTRY).h
 	@sudo cp $(NAME).so $(LD_LIBRARY_PATH)
 	@echo "Done!"
 
+docs:
+	@doxygen 14> /dev/null
+	@echo "Documentation created!"
+	@echo ""
+	@echo "Copy the following link and open in a browser:"
+	@echo file://$(shell pwd)/$(DOCS_DIR)/html/index.html
+
 clean:
-	@rm -rf $(NAME).so $(TEST).o $(OBJ_DIR) $(DEP_DIR) ./examples/$(TEST).o
+	@rm -rf $(NAME).so $(TEST).o $(OBJ_DIR) $(DEP_DIR) ./examples/$(TEST).o $(DOCS_DIR)
 
 -include $(DEPFILES)

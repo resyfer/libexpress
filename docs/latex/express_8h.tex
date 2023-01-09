@@ -6,22 +6,19 @@ This contains the entry point to the library.
 
 
 {\ttfamily \#include \char`\"{}router.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$limits.\+h$>$}\newline
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}\label{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}} 
-\#define {\bfseries MAX\+\_\+\+CON}~50
-\end{DoxyCompactItemize}
+\#define {\bfseries MAX\+\_\+\+CON}~100
+\begin{DoxyCompactList}\small\item\em Maximum simultaneous connections accepted. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$ \mbox{\hyperlink{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}{server\+\_\+new}} (void)
-\begin{DoxyCompactList}\small\item\em Creates a new server. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{express_8h_acd7442937af40a2b5e190b06da9adb05}\label{express_8h_acd7442937af40a2b5e190b06da9adb05}} 
-void {\bfseries server\+\_\+listen} (\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$server, port\+\_\+t port)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a new server instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{express_8h_acd7442937af40a2b5e190b06da9adb05}{server\+\_\+listen}} (\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$server, \mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\+\_\+t}} port)
+\begin{DoxyCompactList}\small\item\em Makes the server instance listen for HTTP requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -37,6 +34,27 @@ Saurav Pal (resyfer)
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{express_8h_acd7442937af40a2b5e190b06da9adb05}\label{express_8h_acd7442937af40a2b5e190b06da9adb05}} 
+\index{express.h@{express.h}!server\_listen@{server\_listen}}
+\index{server\_listen@{server\_listen}!express.h@{express.h}}
+\doxysubsubsection{\texorpdfstring{server\_listen()}{server\_listen()}}
+{\footnotesize\ttfamily void server\+\_\+listen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$}]{server,  }\item[{\mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\+\_\+t}}}]{port }\end{DoxyParamCaption})}
+
+
+
+Makes the server instance listen for HTTP requests. 
+
+The server instance listens for HTTP requests at the specified port.
+
+Since server\+\_\+t and \mbox{\hyperlink{structrouter__t}{router\+\_\+t}} are the same types, any router can be made to listen for connections, not just the server-\/instance. However, all routes requested will be resolved according to the router listening to the connection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & The server instance \\
+\hline
+{\em port} & The port on which the server instance will listen for requests \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}\label{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}} 
 \index{express.h@{express.h}!server\_new@{server\_new}}
 \index{server\_new@{server\_new}!express.h@{express.h}}
@@ -45,5 +63,11 @@ Saurav Pal (resyfer)
 
 
 
-Creates a new server. 
+Creates a new server instance. 
 
+\begin{DoxyReturn}{Returns}
+A server instance. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Please keep only one instance per application. 
+\end{DoxyWarning}

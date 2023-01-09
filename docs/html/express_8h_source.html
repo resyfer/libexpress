@@ -81,23 +81,25 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBEXPRESS_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBEXPRESS_H 1</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;router.h&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;util.h&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;limits.h&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// TODO: Fix memory leaks</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">static</span> <span class="keywordtype">int</span> server_socket;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">   38</a></span><a class="code hl_struct" href="structrouter__t.html">server_t</a>* <a class="code hl_function" href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">server_new</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">void</span> server_listen(<a class="code hl_struct" href="structrouter__t.html">server_t</a> *server, port_t port);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define MAX_CON 50</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aexpress_8h_html_a2590b3890b4d9ea0ef1f32c674532adc"><div class="ttname"><a href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">server_new</a></div><div class="ttdeci">server_t * server_new(void)</div><div class="ttdoc">Creates a new server.</div></div>
-<div class="ttc" id="astructrouter__t_html"><div class="ttname"><a href="structrouter__t.html">router_t</a></div><div class="ttdef"><b>Definition:</b> router.h:20</div></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/* Header Includes */</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="router_8h.html">router.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// TODO: Fix memory leaks</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="express_8h.html#affa8bfcc8a3da438e9b52a6ded1f8e72">   23</a></span><span class="preprocessor">#define MAX_CON 100</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">static</span> <span class="keywordtype">int</span> server_socket;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><a class="code hl_struct" href="structrouter__t.html">server_t</a>* <a class="code hl_function" href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">server_new</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">server_listen</a>(<a class="code hl_struct" href="structrouter__t.html">server_t</a> *server, <a class="code hl_typedef" href="router_8h.html#ada67be506b5793f1a74686c498c4a866">port_t</a> port);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aexpress_8h_html_a2590b3890b4d9ea0ef1f32c674532adc"><div class="ttname"><a href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">server_new</a></div><div class="ttdeci">server_t * server_new(void)</div><div class="ttdoc">Creates a new server instance.</div><div class="ttdef"><b>Definition:</b> express.c:33</div></div>
+<div class="ttc" id="aexpress_8h_html_acd7442937af40a2b5e190b06da9adb05"><div class="ttname"><a href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">server_listen</a></div><div class="ttdeci">void server_listen(server_t *server, port_t port)</div><div class="ttdoc">Makes the server instance listen for HTTP requests.</div><div class="ttdef"><b>Definition:</b> express.c:162</div></div>
+<div class="ttc" id="arouter_8h_html"><div class="ttname"><a href="router_8h.html">router.h</a></div><div class="ttdoc">This contains the router functions.</div></div>
+<div class="ttc" id="arouter_8h_html_ada67be506b5793f1a74686c498c4a866"><div class="ttname"><a href="router_8h.html#ada67be506b5793f1a74686c498c4a866">port_t</a></div><div class="ttdeci">u_int16_t port_t</div><div class="ttdoc">Port number.</div><div class="ttdef"><b>Definition:</b> router.h:25</div></div>
+<div class="ttc" id="astructrouter__t_html"><div class="ttname"><a href="structrouter__t.html">router_t</a></div><div class="ttdoc">Router.</div><div class="ttdef"><b>Definition:</b> router.h:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

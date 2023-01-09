@@ -75,6 +75,11 @@ $(function() {
   <div class="headertitle"><div class="title">router_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Router.  
+ <a href="structrouter__t.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="router_8h_source.html">router.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -88,7 +93,11 @@ hmap_t *&#160;</td><td class="memItemRight" valign="bottom"><b>routes</b></td></
 hmap_t *&#160;</td><td class="memItemRight" valign="bottom"><b>child_routers</b></td></tr>
 <tr class="separator:a40aa72d553db90321f140dc638cdc49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Router. </p>
+<p >It is the router for a particular path. It also contains the routers of children according to the path.</p>
+<p >eg. If the router has a path /hello, then the new router with path /hello/world will be a child of the original with path /world. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="router_8h_source.html">router.h</a></li>
 </ul>
 </div><!-- contents -->

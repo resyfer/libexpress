@@ -1,5 +1,14 @@
 \hypertarget{structrouter__t}{}\doxysection{router\+\_\+t Struct Reference}
 \label{structrouter__t}\index{router\_t@{router\_t}}
+
+
+Router.  
+
+
+
+
+{\ttfamily \#include $<$router.\+h$>$}
+
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
@@ -14,6 +23,13 @@ hmap\+\_\+t $\ast$ {\bfseries child\+\_\+routers}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Router. 
+
+It is the router for a particular path. It also contains the routers of children according to the path.
+
+eg. If the router has a path /hello, then the new router with path /hello/world will be a child of the original with path /world. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/router.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{router_8h}{router.\+h}}\end{DoxyCompactItemize}

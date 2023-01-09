@@ -6,20 +6,19 @@
 \DoxyCodeLine{12 \textcolor{preprocessor}{\#ifndef \_\_LIBEXPRESS\_H}}
 \DoxyCodeLine{13 \textcolor{preprocessor}{\#define \_\_LIBEXPRESS\_H 1}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}router.h"{}}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}util.h"{}}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <limits.h>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{comment}{// TODO: Fix memory leaks}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{29 \textcolor{keyword}{static} \textcolor{keywordtype}{int} server\_socket;}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{38 \mbox{\hyperlink{structrouter__t}{server\_t}}* \mbox{\hyperlink{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}{server\_new}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{40 \textcolor{keywordtype}{void} server\_listen(\mbox{\hyperlink{structrouter__t}{server\_t}} *server, port\_t port);}
-\DoxyCodeLine{41 }
-\DoxyCodeLine{42 \textcolor{preprocessor}{\#define MAX\_CON 50}}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 \textcolor{comment}{/* Header Includes */}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{router_8h}{router.h}}"{}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{// TODO: Fix memory leaks}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define MAX\_CON 100}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{33 \textcolor{keyword}{static} \textcolor{keywordtype}{int} server\_socket;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{41 \mbox{\hyperlink{structrouter__t}{server\_t}}* \mbox{\hyperlink{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}{server\_new}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{58 \textcolor{keywordtype}{void} \mbox{\hyperlink{express_8h_acd7442937af40a2b5e190b06da9adb05}{server\_listen}}(\mbox{\hyperlink{structrouter__t}{server\_t}} *server, \mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\_t}} port);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

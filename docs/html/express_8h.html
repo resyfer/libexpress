@@ -83,25 +83,24 @@ $(function() {
 
 <p>This contains the entry point to the library.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;router.h&quot;</code><br />
-<code>#include &quot;util.h&quot;</code><br />
-<code>#include &lt;limits.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="router_8h_source.html">router.h</a>&quot;</code><br />
 </div>
 <p><a href="express_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="memItemLeft" align="right" valign="top"><a id="affa8bfcc8a3da438e9b52a6ded1f8e72" name="affa8bfcc8a3da438e9b52a6ded1f8e72"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CON</b>&#160;&#160;&#160;50</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CON</b>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum simultaneous connections accepted. <br /></td></tr>
 <tr class="separator:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2590b3890b4d9ea0ef1f32c674532adc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrouter__t.html">server_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">server_new</a> (void)</td></tr>
-<tr class="memdesc:a2590b3890b4d9ea0ef1f32c674532adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new server.  <a href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">More...</a><br /></td></tr>
+<tr class="memdesc:a2590b3890b4d9ea0ef1f32c674532adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new server instance.  <a href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">More...</a><br /></td></tr>
 <tr class="separator:a2590b3890b4d9ea0ef1f32c674532adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd7442937af40a2b5e190b06da9adb05"><td class="memItemLeft" align="right" valign="top"><a id="acd7442937af40a2b5e190b06da9adb05" name="acd7442937af40a2b5e190b06da9adb05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>server_listen</b> (<a class="el" href="structrouter__t.html">server_t</a> *server, port_t port)</td></tr>
+<tr class="memitem:acd7442937af40a2b5e190b06da9adb05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">server_listen</a> (<a class="el" href="structrouter__t.html">server_t</a> *server, <a class="el" href="router_8h.html#ada67be506b5793f1a74686c498c4a866">port_t</a> port)</td></tr>
+<tr class="memdesc:acd7442937af40a2b5e190b06da9adb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the server instance listen for HTTP requests.  <a href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">More...</a><br /></td></tr>
 <tr class="separator:acd7442937af40a2b5e190b06da9adb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -110,6 +109,45 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>server_listen</b> (<a
 <dl class="section author"><dt>Author</dt><dd>Saurav Pal (resyfer) </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>No known bugs </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="acd7442937af40a2b5e190b06da9adb05" name="acd7442937af40a2b5e190b06da9adb05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd7442937af40a2b5e190b06da9adb05">&#9670;&#160;</a></span>server_listen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void server_listen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrouter__t.html">server_t</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="router_8h.html#ada67be506b5793f1a74686c498c4a866">port_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Makes the server instance listen for HTTP requests. </p>
+<p >The server instance listens for HTTP requests at the specified port.</p>
+<p >Since server_t and <a class="el" href="structrouter__t.html" title="Router.">router_t</a> are the same types, any router can be made to listen for connections, not just the server-instance. However, all routes requested will be resolved according to the router listening to the connection.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td>The server instance </td></tr>
+    <tr><td class="paramname">port</td><td>The port on which the server instance will listen for requests </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a2590b3890b4d9ea0ef1f32c674532adc" name="a2590b3890b4d9ea0ef1f32c674532adc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2590b3890b4d9ea0ef1f32c674532adc">&#9670;&#160;</a></span>server_new()</h2>
 
@@ -126,7 +164,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>server_listen</b> (<a
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new server. </p>
+<p>Creates a new server instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>A server instance. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Please keep only one instance per application. </dd></dl>
 
 </div>
 </div>

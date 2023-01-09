@@ -1,46 +1,49 @@
 \hypertarget{router_8h_source}{}\doxysection{router.\+h}
 \label{router_8h_source}\index{include/router.h@{include/router.h}}
-
+\mbox{\hyperlink{router_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_ROUTER\_LIBEXPRESS\_H}}
-\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_ROUTER\_LIBEXPRESS\_H 1}}
-\DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <sys/types.h>}}
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <stdarg.h>}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <libvector/vector.h>}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}controller.h"{}}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}util.h"{}}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#define ROOT "{}/"{}}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{keyword}{typedef} u\_int16\_t port\_t;}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifndef \_\_ROUTER\_LIBEXPRESS\_H}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define \_\_ROUTER\_LIBEXPRESS\_H 1}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
-\DoxyCodeLine{16     vector\_t *controllers;}
-\DoxyCodeLine{17 \} \mbox{\hyperlink{structroute__t}{route\_t}};}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#define ROUTE\_END NULL}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
-\DoxyCodeLine{21     \textcolor{keywordtype}{char} *path;}
-\DoxyCodeLine{22     hmap\_t *routes; \textcolor{comment}{/* Of type route\_t */}}
-\DoxyCodeLine{23     hmap\_t *child\_routers; \textcolor{comment}{/* Of type router\_t */}}
-\DoxyCodeLine{24 \} \mbox{\hyperlink{structrouter__t}{router\_t}};}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26 \textcolor{keyword}{typedef} \mbox{\hyperlink{structrouter__t}{router\_t}} \mbox{\hyperlink{structrouter__t}{server\_t}};}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{28 \textcolor{comment}{// TODO:}}
-\DoxyCodeLine{29 \textcolor{comment}{// router\_t* router\_new(server\_t *server, char *path);}}
-\DoxyCodeLine{30 \textcolor{comment}{// void router\_use(router\_t *router, char *path, middleware\_t middleware);}}
-\DoxyCodeLine{31 }
-\DoxyCodeLine{32 \mbox{\hyperlink{structroute__t}{route\_t}}* find\_route(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \mbox{\hyperlink{structreq__t}{req\_t}} *req);}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34 \textcolor{keywordtype}{void} route(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \textcolor{keywordtype}{char}* method, ...);}
-\DoxyCodeLine{35 \textcolor{keywordtype}{void} route\_get(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{36 \textcolor{keywordtype}{void} route\_post(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{37 \textcolor{keywordtype}{void} route\_put(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{38 \textcolor{keywordtype}{void} route\_delete(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 \textcolor{comment}{/* Personal Libraries */}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <libvector/vector.h>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{/* Header Includes */}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}controller.h"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}util.h"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} u\_int16\_t \mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\_t}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{34 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{35     vector\_t *controllers;}
+\DoxyCodeLine{36 \} \mbox{\hyperlink{structroute__t}{route\_t}};}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define ROUTE\_END NULL}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{50 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{51     \textcolor{keywordtype}{char} *path;}
+\DoxyCodeLine{52     hmap\_t *routes; \textcolor{comment}{/* Of type route\_t */}}
+\DoxyCodeLine{53     hmap\_t *child\_routers; \textcolor{comment}{/* Of type router\_t */}}
+\DoxyCodeLine{54 \} \mbox{\hyperlink{structrouter__t}{router\_t}};}
+\DoxyCodeLine{55 \textcolor{keyword}{typedef} \mbox{\hyperlink{structrouter__t}{router\_t}} \mbox{\hyperlink{structrouter__t}{server\_t}};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{// TODO:}}
+\DoxyCodeLine{58 \textcolor{comment}{// router\_t* router\_new(server\_t *server, char *path);}}
+\DoxyCodeLine{59 \textcolor{comment}{// void router\_use(router\_t *router, char *path, middleware\_t middleware);}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{68 \mbox{\hyperlink{structroute__t}{route\_t}}* \mbox{\hyperlink{router_8h_a175d8e29afb8287b392c116626bc7fa6}{find\_route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \mbox{\hyperlink{structreq__t}{req\_t}} *req);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}{route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \textcolor{keywordtype}{char}* method, ...);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{89 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}{route\_get}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{100 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}{route\_post}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{110 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_aa14ea43203313f72f17859b089ea8c3f}{route\_put}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{120 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}{route\_delete}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

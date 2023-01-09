@@ -1,0 +1,179 @@
+\hypertarget{router_8h}{}\doxysection{include/router.h File Reference}
+\label{router_8h}\index{include/router.h@{include/router.h}}
+
+
+This contains the router functions.  
+
+
+{\ttfamily \#include $<$libvector/vector.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structroute__t}{route\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Route. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrouter__t}{router\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Router. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{router_8h_a912295a37be842a37b91bcbffc1c4541}\label{router_8h_a912295a37be842a37b91bcbffc1c4541}} 
+\#define {\bfseries ROUTE\+\_\+\+END}~NULL
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{router_8h_ada67be506b5793f1a74686c498c4a866}\label{router_8h_ada67be506b5793f1a74686c498c4a866}} 
+typedef u\+\_\+int16\+\_\+t {\bfseries port\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Port number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{router_8h_ad12990ea230ced7c0a8a600f1a92931f}\label{router_8h_ad12990ea230ced7c0a8a600f1a92931f}} 
+typedef \mbox{\hyperlink{structrouter__t}{router\+\_\+t}} {\bfseries server\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structroute__t}{route\+\_\+t}} $\ast$ \mbox{\hyperlink{router_8h_a175d8e29afb8287b392c116626bc7fa6}{find\+\_\+route}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, \mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req)
+\begin{DoxyCompactList}\small\item\em Finds the router most appropriate for serving request. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}{route}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, const char $\ast$path, char $\ast$method,...)
+\begin{DoxyCompactList}\small\item\em Assign Route for a specific method for a specific path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}{route\+\_\+get}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, const char $\ast$path,...)
+\begin{DoxyCompactList}\small\item\em Assign a route for GET request for a router. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}{route\+\_\+post}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, const char $\ast$path,...)
+\begin{DoxyCompactList}\small\item\em Assign a route for POST request for a router. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{router_8h_aa14ea43203313f72f17859b089ea8c3f}{route\+\_\+put}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, const char $\ast$path,...)
+\begin{DoxyCompactList}\small\item\em Assign a route for PUT request for a router. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}{route\+\_\+delete}} (\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$router, const char $\ast$path,...)
+\begin{DoxyCompactList}\small\item\em Assign a route for DELETE request for a router. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This contains the router functions. 
+
+It contains and imports all the functions of router that are made available.
+
+\begin{DoxyAuthor}{Author}
+Saurav Pal (resyfer) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000002}{Bug}}]No known bugs \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{router_8h_a175d8e29afb8287b392c116626bc7fa6}\label{router_8h_a175d8e29afb8287b392c116626bc7fa6}} 
+\index{router.h@{router.h}!find\_route@{find\_route}}
+\index{find\_route@{find\_route}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{find\_route()}{find\_route()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structroute__t}{route\+\_\+t}} $\ast$ find\+\_\+route (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req }\end{DoxyParamCaption})}
+
+
+
+Finds the router most appropriate for serving request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router \\
+\hline
+{\em req} & Request Instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+route\+\_\+t$\ast$ Route 
+\end{DoxyReturn}
+\mbox{\Hypertarget{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}\label{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}} 
+\index{router.h@{router.h}!route@{route}}
+\index{route@{route}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{route()}{route()}}
+{\footnotesize\ttfamily void route (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{const char $\ast$}]{path,  }\item[{char $\ast$}]{method,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Assign Route for a specific method for a specific path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router instance, can be server instance as well \\
+\hline
+{\em path} & Path for router, only part of it which should be it\textquotesingle{}s path if the tree of router hierarchy is maintained \\
+\hline
+{\em method} & The method of the HTTP requests \\
+\hline
+{\em ...} & Any number of controllers or middlewares of the type {\ttfamily controller\+\_\+t$\ast$} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}\label{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}} 
+\index{router.h@{router.h}!route\_delete@{route\_delete}}
+\index{route\_delete@{route\_delete}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{route\_delete()}{route\_delete()}}
+{\footnotesize\ttfamily void route\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{const char $\ast$}]{path,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Assign a route for DELETE request for a router. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router instance, can be server instance as well \\
+\hline
+{\em path} & Path for router, only part of it which should be it\textquotesingle{}s path if the tree of router hierarchy is maintained \\
+\hline
+{\em ...} & Any number of controllers or middlewares of the type {\ttfamily controller\+\_\+t$\ast$} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}\label{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}} 
+\index{router.h@{router.h}!route\_get@{route\_get}}
+\index{route\_get@{route\_get}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{route\_get()}{route\_get()}}
+{\footnotesize\ttfamily void route\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{const char $\ast$}]{path,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Assign a route for GET request for a router. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router instance, can be server instance as well \\
+\hline
+{\em path} & Path for router, only part of it which should be it\textquotesingle{}s path if the tree of router hierarchy is maintained \\
+\hline
+{\em ...} & Any number of controllers or middlewares of the type {\ttfamily controller\+\_\+t$\ast$} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}\label{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}} 
+\index{router.h@{router.h}!route\_post@{route\_post}}
+\index{route\_post@{route\_post}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{route\_post()}{route\_post()}}
+{\footnotesize\ttfamily void route\+\_\+post (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{const char $\ast$}]{path,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Assign a route for POST request for a router. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router instance, can be server instance as well \\
+\hline
+{\em path} & Path for router, only part of it which should be it\textquotesingle{}s path if the tree of router hierarchy is maintained \\
+\hline
+{\em ...} & Any number of controllers or middlewares of the type {\ttfamily controller\+\_\+t$\ast$} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{router_8h_aa14ea43203313f72f17859b089ea8c3f}\label{router_8h_aa14ea43203313f72f17859b089ea8c3f}} 
+\index{router.h@{router.h}!route\_put@{route\_put}}
+\index{route\_put@{route\_put}!router.h@{router.h}}
+\doxysubsubsection{\texorpdfstring{route\_put()}{route\_put()}}
+{\footnotesize\ttfamily void route\+\_\+put (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrouter__t}{router\+\_\+t}} $\ast$}]{router,  }\item[{const char $\ast$}]{path,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Assign a route for PUT request for a router. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em router} & Router instance, can be server instance as well \\
+\hline
+{\em path} & Path for router, only part of it which should be it\textquotesingle{}s path if the tree of router hierarchy is maintained \\
+\hline
+{\em ...} & Any number of controllers or middlewares of the type {\ttfamily controller\+\_\+t$\ast$} \\
+\hline
+\end{DoxyParams}

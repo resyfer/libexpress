@@ -1,10 +1,23 @@
 #include <include/router.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
+#include <stdarg.h>
 
 /* Find */
+
+/**
+ * @brief Pushes controllers of route to controller queue
+ *
+ * req->c_queue contains the controllers that need execution.
+ * This pushes the controllers of the route to the queue in the
+ * given order.
+ *
+ * @param route Router
+ * @param req Request Instance
+ */
 void
-vpush_to_call_queue(route_t *route, req_t *req)
+push_to_call_queue(route_t *route, req_t *req)
 {
 	if(!route || !route->controllers) {
 		return;
@@ -20,11 +33,24 @@ vpush_to_call_queue(route_t *route, req_t *req)
 	}
 }
 
+/**
+ * @brief Recursively Finds Route for given path and method
+ *
+ * Recursively goes through the tree using the tokens got from parsing
+ * the path requested.
+ *
+ * @param router Router
+ * @param req Request Instance
+ * @param tokens Vector of tokens got from parsing the path
+ * @param index Index of tokens in recursion
+ * @return route_t* Route
+ */
 route_t*
 find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 {
 	route_t *ret = NULL;
 
+	// If reached end of recursion
 	if(index >= vec_size(tokens) || !strcmp(router->path, "*")) {
 
 		// Exact method
@@ -45,7 +71,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		if(!controller_route) {
 			controller_route = hmap_get(router->routes, "*");
 		}
-		vpush_to_call_queue(controller_route, req);
+		push_to_call_queue(controller_route, req);
 
 		return ret;
 	}
@@ -97,7 +123,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		// Middlewares
 		route_t *middleware_route = hmap_get(next_router->routes, "*");
 		if(middleware_route) {
-			vpush_to_call_queue(middleware_route, req);
+			push_to_call_queue(middleware_route, req);
 		}
 	}
 
@@ -165,6 +191,20 @@ find_route(router_t *router, req_t *req)
 }
 
 /* Add */
+
+/**
+ * @brief Adds route of given method at given path in the tree
+ *
+ * Recursively goes through the entire tree by splitting path
+ * into tokens at / and adds the route at the desired location,
+ * while at the same time creating any routers that need to be
+ * created while traversing the tree.
+ *
+ * @param router Router
+ * @param path Path
+ * @param method Method
+ * @param controllers Vector of controllers for the route
+ */
 void
 vroute(router_t *router, const char *path, const char *method, vector_t *controllers)
 {
