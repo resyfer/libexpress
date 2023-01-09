@@ -5,6 +5,9 @@
 #include "util.h"
 #include <limits.h>
 
+// TODO: Fix memory leaks
+// TODO: Tidy
+
 static int server_socket;
 
 server_t* server_new(void);

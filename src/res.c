@@ -170,8 +170,10 @@ res_send(res_t *res, char* body)
 }
 
 void
-res_send_file(res_t *res, char *path)
+res_send_file(res_t *res, char *file_path)
 {
+	char *path = strdup(file_path);
+
 	// Please provide the actual path using __BASE__ like civilized humans.
 	// I don't want pain with this commented out code for casees
 	// when it doesn't exist.
@@ -183,18 +185,22 @@ res_send_file(res_t *res, char *path)
 
 	int fd = open(path, O_RDONLY);
 	struct stat sb;
-	if(fstat(fd, &sb) == -1) {
+	if(!fd || fstat(fd, &sb) == -1) {
 		res->status = 404;
-		return res_send(res, "");
+		res_send(res, "");
+		close(fd);
+		return;
 	}
 
 	char *file = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
 
 	// Guessing mime types from file extensions. 'file' command does a very good job
 	// at guessing them especially as it guesses css as 'text/plain' and not 'text/css' :')
+
+	char* path_copy = path; //! Malloc gives error on modifying the pointer itself
 	char* ext;
 	while(1) {
-		char *token = strtok_r(path, ".", &path);
+		char *token = strtok_r(path_copy, ".", &path_copy);
 		if(token) {
 			ext = token;
 		} else {
@@ -208,6 +214,7 @@ res_send_file(res_t *res, char *path)
 	res_send(res, file);
 
 	munmap(file, sb.st_size); // TODO: Cache files
+	free(path);
 
 	close(fd);
 }

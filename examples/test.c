@@ -5,12 +5,15 @@
 #undef __BASE__
 #define __BASE__ "/home/resyfer/self/projects/libexpress/examples"
 
-void adios(req_t *req, res_t *res) {
+void frontend(req_t *req, res_t *res) {
+	res_send_file(res, __BASE__ "/a.html");
+}
 
+
+void adios(req_t *req, res_t *res) {
 	char *file = get_req_param(req, "file");
 	char path[PATH_MAX] = {0};
 	sprintf(path, "%s/%s", __BASE__, file);
-
 	res_send_file(res, path);
 }
 
@@ -34,6 +37,7 @@ int main() {
 	route_get(app, "/hello/*", middle, hi, ROUTE_END);
 	route_get(app, "/hello/bye", hi, ROUTE_END);
 	route_get(app, "/:file", adios, ROUTE_END);
+	route_get(app, "/", frontend, ROUTE_END);
 
 	server_listen(app, 3000);
 	return 0;
