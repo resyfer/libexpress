@@ -59,7 +59,6 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		// All methods
 		if(!ret) {
 			ret = hmap_get(router->routes, "*");
-			printf("%p\n", ret);
 		}
 
 		if(!ret) {
