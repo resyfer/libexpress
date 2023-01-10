@@ -129,7 +129,7 @@ void
 res_send(res_t *res, char* body)
 {
 	if(res->sent) {
-		print_error("Can not send response more than once for the same request\n");
+		error("Can not send response more than once for the same request\n");
 		return;
 	}
 
@@ -180,8 +180,7 @@ res_send_file(res_t *res, char *file_path)
 	// when it doesn't exist.
 	// char *file_path = realpath(path, NULL);
 	// if(!file_path) {
-	// 	print_error("Couldn't get file\n");
-	// 	exit(1);
+	// 	error("Couldn't get file");
 	// }
 
 	int fd = open(path, O_RDONLY);
@@ -224,7 +223,30 @@ res_send_file(res_t *res, char *file_path)
 void
 set_res_body(res_t* res, char* body)
 {
+	if(!body) {
+		return;
+	}
+
 	res->body = body;
+}
+
+void
+set_res_status(res_t* res, u_int16_t status)
+{
+	if(status < 100 || status >= 600) {
+		error("Incorrect Status Code");
+	}
+
+	printf("%d\n", status);
+	char status_str[4] = {0};
+	sprintf(status_str, "%d", status);
+
+	char *exists = hmap_get(status_codes, status_str);
+	if(!exists) {
+		error("Incorrect Status Code");
+	}
+
+	res->status = status;
 }
 
 void

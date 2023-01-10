@@ -18,7 +18,8 @@
 // TODO: Fix memory leaks
 
 /**
- * @brief Maximum simultaneous connections accepted.
+ * @brief Maximum simultaneous connections accepted
+ *        by server instance.
  */
 #define MAX_CON 100
 
@@ -29,6 +30,11 @@
  * by the libexpress for accepting and responding
  * to requests by sending appropriate responses
  * through the socket file descriptor.
+ *
+ * It is set once, and never again. It is used to
+ * close the socket connection of the server
+ * instance once SIGINT is sent to the program
+ * to shut the server down.
  */
 static int server_socket;
 
@@ -42,11 +48,13 @@ server_t* server_new(void);
 
 /**
  * @brief Makes the server instance listen for HTTP requests
+ *        at specified port.
  *
  * The server instance listens for HTTP requests at the
- * specified port.
+ * specified port and accepts requests from a maximum of
+ * `MAX_CON` clients.
  *
- * Since server_t and router_t are the same types, any
+ * Since `server_t` and `router_t` are the same types, any
  * router can be made to listen for connections, not just
  * the server-instance. However, all routes requested will
  * be resolved according to the router listening to the

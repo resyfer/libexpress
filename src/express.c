@@ -24,8 +24,8 @@
  * @param res Server Response
  */
 void controller_404(req_t *req, res_t *res) {
-	res->status = 404;
-	hmap_push(res->headers, "Content-Type", "text/plain");
+	set_res_status(res, 404);
+	set_res_header(res, "Content-Type", "text/plain");
 	res_send(res, "404");
 }
 
@@ -42,7 +42,7 @@ server_new(void)
 	app->child_routers = hmap_new_cap(5);
 
 	/* Adding the catch-all route handler for 404 requests */
-	route(app, "/*", "*", controller_404);
+	route(app, "*", "*", controller_404);
 
 	return app;
 }
@@ -58,9 +58,9 @@ server_new(void)
 void
 graceful_exit(int sig)
 {
-	print_warning("\nShutting down Server\n");
+	warning("Shutting down Server");
 	close(server_socket);
-	print_ok("Server Closed\n");
+	success("Server Closed");
 	exit(0);
 }
 
@@ -68,10 +68,13 @@ graceful_exit(int sig)
  * @brief Connection Handler arguments
  *
  * Due to connection handler being run in a
- * thread, this data structure holds the file
+ * thread, this structure holds the file
  * descriptor of the client, as well as the
  * server instance to pass it down to the
- * `connection handler`
+ * `connection handler` function.
+ *
+ * Just a temporary struct used to pass arguments
+ * into the `connection_handler` function.
  */
 typedef struct {
 	int* client;
@@ -98,16 +101,16 @@ connection_handler(void* args)
 	clock_t start_time = clock(); // Start timestamp for response time logging
 
 	// Read the Request from Client
-	char buf[MAX_SIZE] = {0};
-	int k = read(*client, buf, sizeof(buf));
-	buf[k] = '\0';
+	char req_buf[MAX_SIZE] = {0};
+	int k = read(*client, req_buf, sizeof(req_buf));
+	req_buf[k] = '\0';
 
-	req_t *req = parse_req(buf, k);
+	req_t *req = parse_req(req_buf, k);
 
 	route_t *route = find_route(server, req);
 
 	// Initialize response
-	res_t *res = malloc(sizeof(res));
+	res_t *res = malloc(sizeof(res_t));
 	res->status = 200; // Default value
 	res->headers = hmap_new_cap(5);
 	res->body = NULL;
@@ -121,11 +124,9 @@ connection_handler(void* args)
 
 		if(!controller) {
 			if(res->next) {
-				print_error("\nCan't use next on last controller\n");
-				exit(1);
+				error("Can't use next on last controller");
 			} else if(!res->sent) {
-				print_error("\nResponse is not sent by end of final controller\n");
-				exit(1);
+				error("Response is not sent by end of final reachable controller");
 			}
 
 			break;
@@ -141,8 +142,7 @@ connection_handler(void* args)
 		if(res->next) {
 			res->next = false;
 		} else {
-			print_error("\nNeither `next` was reached, nor any responses were sent\n");
-			exit(1);
+			error("Neither `next` was reached, nor any responses were sent");
 		}
 	}
 
@@ -150,10 +150,27 @@ connection_handler(void* args)
 
 	// Logs
 	if(res->sent) {
-		printf("%s %s %d - %f ms\n", req->method, req->path, res->status, ((double) (end_time - start_time) / CLOCKS_PER_SEC) * 1000);
+		printf("%s %s %d - %f ms\n",
+			req->method,
+			req->path,
+			res->status,
+			((double) (end_time - start_time) / CLOCKS_PER_SEC) * 1000);
 	}
 
-	// Cleanup of client
+	// Free
+	free(req->method);
+	free(req->path);
+	hmap_free(req->queries);
+	hmap_free(req->headers);
+	hmap_free(req->params);
+	free(req->body);
+	queue_free(req->c_queue);
+	free(req);
+
+	hmap_free(res->headers);
+	free(res->body);
+	free(res);
+
 	close(*client);
 	free(client);
 }
@@ -163,19 +180,19 @@ server_listen(server_t *server, port_t port)
 {
 	async_init();
 
-	signal(SIGINT, graceful_exit); // Signal handler for SIGINT for graceful shutdown
+	signal(SIGINT, graceful_exit);
+	// Signal handler for SIGINT for graceful shutdown
 
 	// Setting up socket
 	server_socket = socket(AF_INET, SOCK_STREAM, 0);
 	if(server_socket == -1) {
-		print_error("Error establishing server\n");
-		exit(1);
+		error("Error establishing server");
 	}
 
 	if (setsockopt(server_socket,
 			SOL_SOCKET, SO_REUSEADDR, &(int){1},
 			sizeof(int)) < 0) {
-		print_error("Error acquring port\n");
+		error("Error acquring port");
 	}
 
 	// Binding socket to port
@@ -188,8 +205,7 @@ server_listen(server_t *server, port_t port)
 	if(bind(server_socket,
 		(struct sockaddr*) &serv_addr,
 		sizeof(serv_addr)) == -1) {
-			print_error("Error binding to port");
-			exit(1);
+			error("Error binding to port");
 		}
 
 	// Listening for connections, at max connections being MAX_CON

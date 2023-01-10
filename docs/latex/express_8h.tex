@@ -11,14 +11,14 @@ This contains the entry point to the library.
 \item 
 \mbox{\Hypertarget{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}\label{express_8h_affa8bfcc8a3da438e9b52a6ded1f8e72}} 
 \#define {\bfseries MAX\+\_\+\+CON}~100
-\begin{DoxyCompactList}\small\item\em Maximum simultaneous connections accepted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Maximum simultaneous connections accepted by server instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$ \mbox{\hyperlink{express_8h_a2590b3890b4d9ea0ef1f32c674532adc}{server\+\_\+new}} (void)
 \begin{DoxyCompactList}\small\item\em Creates a new server instance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{express_8h_acd7442937af40a2b5e190b06da9adb05}{server\+\_\+listen}} (\mbox{\hyperlink{structrouter__t}{server\+\_\+t}} $\ast$server, \mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\+\_\+t}} port)
-\begin{DoxyCompactList}\small\item\em Makes the server instance listen for HTTP requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Makes the server instance listen for HTTP requests at specified port. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,11 +42,11 @@ Saurav Pal (resyfer)
 
 
 
-Makes the server instance listen for HTTP requests. 
+Makes the server instance listen for HTTP requests at specified port. 
 
-The server instance listens for HTTP requests at the specified port.
+The server instance listens for HTTP requests at the specified port and accepts requests from a maximum of {\ttfamily MAX\+\_\+\+CON} clients.
 
-Since server\+\_\+t and \mbox{\hyperlink{structrouter__t}{router\+\_\+t}} are the same types, any router can be made to listen for connections, not just the server-\/instance. However, all routes requested will be resolved according to the router listening to the connection.
+Since {\ttfamily server\+\_\+t} and {\ttfamily \mbox{\hyperlink{structrouter__t}{router\+\_\+t}}} are the same types, any router can be made to listen for connections, not just the server-\/instance. However, all routes requested will be resolved according to the router listening to the connection.
 
 
 \begin{DoxyParams}{Parameters}

@@ -1,15 +1,18 @@
+/* Header Files */
 #include <include/router.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
+
+/* libc */
 #include <stdarg.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/types.h>
 
 /* Find */
 
 /**
  * @brief Pushes controllers of route to controller queue
  *
- * req->c_queue contains the controllers that need execution.
+ * `req->c_queue` contains the controllers that need execution.
  * This pushes the controllers of the route to the queue in the
  * given order.
  *
@@ -36,8 +39,8 @@ push_to_call_queue(route_t *route, req_t *req)
 /**
  * @brief Recursively Finds Route for given path and method
  *
- * Recursively goes through the tree using the tokens got from parsing
- * the path requested.
+ * It recursively goes through the tree of routes using the tokens received
+ * from `find_route` from parsing the path requested.
  *
  * @param router Router
  * @param req Request Instance
@@ -50,13 +53,13 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 {
 	route_t *ret = NULL;
 
-	// If reached end of recursion
+	// Base case for recursion
 	if(index >= vec_size(tokens) || !strcmp(router->path, "*")) {
 
-		// Exact method
+		// Exact method match
 		ret = hmap_get(router->routes, req->method);
 
-		// All methods
+		// Match-All method
 		if(!ret) {
 			ret = hmap_get(router->routes, "*");
 		}
@@ -65,7 +68,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 			return NULL;
 		}
 
-		// Controllers
+		// Push controllers to controller queue
 		route_t *controller_route = hmap_get(router->routes, req->method);
 		if(!controller_route) {
 			controller_route = hmap_get(router->routes, "*");
@@ -79,13 +82,13 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 
 	router_t *next_router = NULL;
 
-	// Exact match
+	// Exact path match
 	next_router = hmap_get(router->child_routers, token);
 	if(next_router) {
 		ret = find_route_r(next_router, req, tokens, index + 1);
 	}
 
-	// Params
+	// Router with Route-Params match
 	if(!ret && strlen(token)) {
 		hmap_itr_t *itr = hmap_itr_new(router->child_routers);
 		hmap_node_t *node;
@@ -109,7 +112,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 		}
 	}
 
-	// Match All
+	// Match-All Router
 	if(!ret) {
 		next_router = hmap_get(router->child_routers, "*");
 
@@ -119,13 +122,12 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 	}
 
 	if(ret) {
-		// Middlewares
+		// Push any middlewares to the controller queue
 		route_t *middleware_route = hmap_get(next_router->routes, "*");
 		if(middleware_route) {
 			push_to_call_queue(middleware_route, req);
 		}
 	}
-
 
 	return ret;
 }
@@ -182,7 +184,7 @@ find_route(router_t *router, req_t *req)
 	}
 
 	if(!dest_route) {
-		print_error("Internal Server Error\n");
+		error("Internal Server Error");
 		exit(1);
 	}
 

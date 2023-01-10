@@ -2,29 +2,27 @@
 #include <stdio.h>
 
 void
-print_info(const char *msg, color_t color)
+print_info(const char *msg, color_t color, bool exit_process, bool print_line, const char* file, int line)
 {
 	char *text_col_bold = col_str_style(color, BOLD);
-	printf("%s%s%s", text_col_bold, msg, RESET);
+
+	// Can't see how to use a ternary operator on an integer (__LINE__)
+	if(print_line) {
+		printf("\n%s%s Line %d: %s%s\n",
+			text_col_bold,
+			file,
+			line,
+			msg,
+			RESET);
+	} else {
+		printf("%s%s%s", text_col_bold, msg, RESET);
+	}
+
 	free(text_col_bold);
-}
 
-void
-print_ok(const char *msg)
-{
-	print_info(msg, GREEN);
-}
-
-void
-print_warning(const char *warning)
-{
-	print_info(warning, YELLOW);
-}
-
-void
-print_error(const char *err)
-{
-	print_info(err, RED);
+	if(exit_process) {
+		exit(1);
+	}
 }
 
 // This attempts to modify the string, so please do not use string literals

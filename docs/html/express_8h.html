@@ -91,7 +91,7 @@ $(function() {
 Macros</h2></td></tr>
 <tr class="memitem:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="memItemLeft" align="right" valign="top"><a id="affa8bfcc8a3da438e9b52a6ded1f8e72" name="affa8bfcc8a3da438e9b52a6ded1f8e72"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CON</b>&#160;&#160;&#160;100</td></tr>
-<tr class="memdesc:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum simultaneous connections accepted. <br /></td></tr>
+<tr class="memdesc:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum simultaneous connections accepted by server instance. <br /></td></tr>
 <tr class="separator:affa8bfcc8a3da438e9b52a6ded1f8e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -100,7 +100,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2590b3890b4d9ea0ef1f32c674532adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new server instance.  <a href="express_8h.html#a2590b3890b4d9ea0ef1f32c674532adc">More...</a><br /></td></tr>
 <tr class="separator:a2590b3890b4d9ea0ef1f32c674532adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd7442937af40a2b5e190b06da9adb05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">server_listen</a> (<a class="el" href="structrouter__t.html">server_t</a> *server, <a class="el" href="router_8h.html#ada67be506b5793f1a74686c498c4a866">port_t</a> port)</td></tr>
-<tr class="memdesc:acd7442937af40a2b5e190b06da9adb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the server instance listen for HTTP requests.  <a href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">More...</a><br /></td></tr>
+<tr class="memdesc:acd7442937af40a2b5e190b06da9adb05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the server instance listen for HTTP requests at specified port.  <a href="express_8h.html#acd7442937af40a2b5e190b06da9adb05">More...</a><br /></td></tr>
 <tr class="separator:acd7442937af40a2b5e190b06da9adb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -135,9 +135,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Makes the server instance listen for HTTP requests. </p>
-<p >The server instance listens for HTTP requests at the specified port.</p>
-<p >Since server_t and <a class="el" href="structrouter__t.html" title="Router.">router_t</a> are the same types, any router can be made to listen for connections, not just the server-instance. However, all routes requested will be resolved according to the router listening to the connection.</p>
+<p>Makes the server instance listen for HTTP requests at specified port. </p>
+<p >The server instance listens for HTTP requests at the specified port and accepts requests from a maximum of <code>MAX_CON</code> clients.</p>
+<p >Since <code>server_t</code> and <code><a class="el" href="structrouter__t.html" title="Router.">router_t</a></code> are the same types, any router can be made to listen for connections, not just the server-instance. However, all routes requested will be resolved according to the router listening to the connection.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">server</td><td>The server instance </td></tr>
