@@ -1,0 +1,192 @@
+\hypertarget{req_8h}{}\doxysection{include/req.h File Reference}
+\label{req_8h}\index{include/req.h@{include/req.h}}
+
+
+This contains all the request related material.  
+
+
+{\ttfamily \#include $<$libhmap/hmap.\+h$>$}\newline
+{\ttfamily \#include $<$libqueue/queue.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structreq__t}{req\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Request made by client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$ \mbox{\hyperlink{req_8h_ae653216a13c99bd072602ae3324bc77f}{parse\+\_\+req}} (char $\ast$req\+\_\+str, int size)
+\begin{DoxyCompactList}\small\item\em Parses the HTTP request string sent by client. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_ae71ab592a6686782d334181a1ca0d240}{get\+\_\+req\+\_\+body}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req)
+\begin{DoxyCompactList}\small\item\em Get the body of request. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_a32e7ae395e796bbf8e402ae51c33d1ea}{get\+\_\+req\+\_\+header}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Get a particular header from the request. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_a70350b2911a6d23eb792ea1b9f98bf19}{get\+\_\+req\+\_\+method}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req)
+\begin{DoxyCompactList}\small\item\em Get the method of the request. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_a06b8bbbc1b3892e0eef3d3d21a6d7ab2}{get\+\_\+req\+\_\+param}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req, const char $\ast$param)
+\begin{DoxyCompactList}\small\item\em Get the value of a particular request path parameter. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_a2f6157fd46467c20cd435ada0388aed7}{get\+\_\+req\+\_\+path}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req)
+\begin{DoxyCompactList}\small\item\em Get the path of the request. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{req_8h_a96c7d50ece767a43466abd2d3551e291}{get\+\_\+req\+\_\+query}} (\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$req, const char $\ast$query)
+\begin{DoxyCompactList}\small\item\em Get a particular query from the request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This contains all the request related material. 
+
+\begin{DoxyAuthor}{Author}
+Saurav Pal (resyfer) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000003}{Bug}}]No known bugs \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{req_8h_ae71ab592a6686782d334181a1ca0d240}\label{req_8h_ae71ab592a6686782d334181a1ca0d240}} 
+\index{req.h@{req.h}!get\_req\_body@{get\_req\_body}}
+\index{get\_req\_body@{get\_req\_body}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_body()}{get\_req\_body()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req }\end{DoxyParamCaption})}
+
+
+
+Get the body of request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Body 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_a32e7ae395e796bbf8e402ae51c33d1ea}\label{req_8h_a32e7ae395e796bbf8e402ae51c33d1ea}} 
+\index{req.h@{req.h}!get\_req\_header@{get\_req\_header}}
+\index{get\_req\_header@{get\_req\_header}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_header()}{get\_req\_header()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req,  }\item[{const char $\ast$}]{header }\end{DoxyParamCaption})}
+
+
+
+Get a particular header from the request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request \\
+\hline
+{\em header} & Header key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Header value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_a70350b2911a6d23eb792ea1b9f98bf19}\label{req_8h_a70350b2911a6d23eb792ea1b9f98bf19}} 
+\index{req.h@{req.h}!get\_req\_method@{get\_req\_method}}
+\index{get\_req\_method@{get\_req\_method}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_method()}{get\_req\_method()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req }\end{DoxyParamCaption})}
+
+
+
+Get the method of the request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Method 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_a06b8bbbc1b3892e0eef3d3d21a6d7ab2}\label{req_8h_a06b8bbbc1b3892e0eef3d3d21a6d7ab2}} 
+\index{req.h@{req.h}!get\_req\_param@{get\_req\_param}}
+\index{get\_req\_param@{get\_req\_param}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_param()}{get\_req\_param()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req,  }\item[{const char $\ast$}]{param }\end{DoxyParamCaption})}
+
+
+
+Get the value of a particular request path parameter. 
+
+The key ({\ttfamily param}) is set according to the route you\textquotesingle{}re calling this function in. If the route is for path /hello/\+:id/world, then something like /hello/abcd/world will populate the param \char`\"{}id\char`\"{} with the value \char`\"{}abcd\char`\"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request \\
+\hline
+{\em param} & Name of the param, as used by the route. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_a2f6157fd46467c20cd435ada0388aed7}\label{req_8h_a2f6157fd46467c20cd435ada0388aed7}} 
+\index{req.h@{req.h}!get\_req\_path@{get\_req\_path}}
+\index{get\_req\_path@{get\_req\_path}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_path()}{get\_req\_path()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req }\end{DoxyParamCaption})}
+
+
+
+Get the path of the request. 
+
+It gives the path requested by the client, minus any queries.
+
+If the request by client is for {\ttfamily /hello?search=world\&foo=bar} then the path is /hello
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_a96c7d50ece767a43466abd2d3551e291}\label{req_8h_a96c7d50ece767a43466abd2d3551e291}} 
+\index{req.h@{req.h}!get\_req\_query@{get\_req\_query}}
+\index{get\_req\_query@{get\_req\_query}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{get\_req\_query()}{get\_req\_query()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+req\+\_\+query (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$}]{req,  }\item[{const char $\ast$}]{query }\end{DoxyParamCaption})}
+
+
+
+Get a particular query from the request. 
+
+If the request by client is for {\ttfamily /hello?search=world\&foo=bar} then the queries are as follows\+:
+
+search = world foo = bar
+
+in the form of {\ttfamily key = value}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & \\
+\hline
+{\em query} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{req_8h_ae653216a13c99bd072602ae3324bc77f}\label{req_8h_ae653216a13c99bd072602ae3324bc77f}} 
+\index{req.h@{req.h}!parse\_req@{parse\_req}}
+\index{parse\_req@{parse\_req}!req.h@{req.h}}
+\doxysubsubsection{\texorpdfstring{parse\_req()}{parse\_req()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structreq__t}{req\+\_\+t}} $\ast$ parse\+\_\+req (\begin{DoxyParamCaption}\item[{char $\ast$}]{req\+\_\+str,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Parses the HTTP request string sent by client. 
+
+It parses the HTTP request string sent by the client and gives a {\ttfamily \mbox{\hyperlink{structreq__t}{req\+\_\+t}}} Request that contains all the information from the request in a meaningful manner.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req\+\_\+str} & HTTP Request String of the client \\
+\hline
+{\em size} & No. of bytes (string length) of the request string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+req\+\_\+t$\ast$ Request 
+\end{DoxyReturn}

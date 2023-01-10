@@ -77,36 +77,51 @@ $(function() {
   <div class="headertitle"><div class="title">req.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __LIBEXPRESS_REQ_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __LIBEXPRESS_REQ_H 1</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;libhmap/hmap.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;libqueue/queue.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="structreq__t.html">    7</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordtype">char</span> *method;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">char</span> *path;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    hmap_t *queries;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    hmap_t *headers;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    hmap_t *params;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">char</span> *body;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    queue_t *c_queue; <span class="comment">//controller queue, includes middlewares as well</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>} <a class="code hl_struct" href="structreq__t.html">req_t</a>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><a class="code hl_struct" href="structreq__t.html">req_t</a>* parse_req(<span class="keywordtype">char</span> *req_str, <span class="keywordtype">int</span> size);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/* Utility */</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">char</span>* get_req_body(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">char</span>* get_req_header(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* header);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">char</span>* get_req_method(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">char</span>* get_req_param(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* param);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">char</span>* get_req_path(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">char</span>* get_req_query(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* query);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// TODO: Add instructions in docs for iterating through maps</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructreq__t_html"><div class="ttname"><a href="structreq__t.html">req_t</a></div><div class="ttdef"><b>Definition:</b> req.h:7</div></div>
+<a href="req_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef __LIBEXPRESS_REQ_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define __LIBEXPRESS_REQ_H 1</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">/* Personal Libraries */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;libhmap/hmap.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;libqueue/queue.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structreq__t.html">   21</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">char</span> *method;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">char</span> *path;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    hmap_t *queries; <span class="comment">// queries like /hello?query1=value1&amp;query2=value2</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    hmap_t *headers;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    hmap_t *params; <span class="comment">// params like /person/1234abcde</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">char</span> *body;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    queue_t *c_queue; <span class="comment">//controller queue, includes middlewares as well</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} <a class="code hl_struct" href="structreq__t.html">req_t</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><a class="code hl_struct" href="structreq__t.html">req_t</a>* <a class="code hl_function" href="req_8h.html#ae653216a13c99bd072602ae3324bc77f">parse_req</a>(<span class="keywordtype">char</span> *req_str, <span class="keywordtype">int</span> size);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/* Utility */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#ae71ab592a6686782d334181a1ca0d240">get_req_body</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#a32e7ae395e796bbf8e402ae51c33d1ea">get_req_header</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* header);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#a70350b2911a6d23eb792ea1b9f98bf19">get_req_method</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#a06b8bbbc1b3892e0eef3d3d21a6d7ab2">get_req_param</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* param);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#a2f6157fd46467c20cd435ada0388aed7">get_req_path</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keywordtype">char</span>* <a class="code hl_function" href="req_8h.html#a96c7d50ece767a43466abd2d3551e291">get_req_query</a>(<a class="code hl_struct" href="structreq__t.html">req_t</a>* req, <span class="keyword">const</span> <span class="keywordtype">char</span>* query);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">// TODO: Add instructions in docs for iterating through maps</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="areq_8h_html_a06b8bbbc1b3892e0eef3d3d21a6d7ab2"><div class="ttname"><a href="req_8h.html#a06b8bbbc1b3892e0eef3d3d21a6d7ab2">get_req_param</a></div><div class="ttdeci">char * get_req_param(req_t *req, const char *param)</div><div class="ttdoc">Get the value of a particular request path parameter.</div><div class="ttdef"><b>Definition:</b> req.c:157</div></div>
+<div class="ttc" id="areq_8h_html_a2f6157fd46467c20cd435ada0388aed7"><div class="ttname"><a href="req_8h.html#a2f6157fd46467c20cd435ada0388aed7">get_req_path</a></div><div class="ttdeci">char * get_req_path(req_t *req)</div><div class="ttdoc">Get the path of the request.</div><div class="ttdef"><b>Definition:</b> req.c:163</div></div>
+<div class="ttc" id="areq_8h_html_a32e7ae395e796bbf8e402ae51c33d1ea"><div class="ttname"><a href="req_8h.html#a32e7ae395e796bbf8e402ae51c33d1ea">get_req_header</a></div><div class="ttdeci">char * get_req_header(req_t *req, const char *header)</div><div class="ttdoc">Get a particular header from the request.</div><div class="ttdef"><b>Definition:</b> req.c:145</div></div>
+<div class="ttc" id="areq_8h_html_a70350b2911a6d23eb792ea1b9f98bf19"><div class="ttname"><a href="req_8h.html#a70350b2911a6d23eb792ea1b9f98bf19">get_req_method</a></div><div class="ttdeci">char * get_req_method(req_t *req)</div><div class="ttdoc">Get the method of the request.</div><div class="ttdef"><b>Definition:</b> req.c:151</div></div>
+<div class="ttc" id="areq_8h_html_a96c7d50ece767a43466abd2d3551e291"><div class="ttname"><a href="req_8h.html#a96c7d50ece767a43466abd2d3551e291">get_req_query</a></div><div class="ttdeci">char * get_req_query(req_t *req, const char *query)</div><div class="ttdoc">Get a particular query from the request.</div><div class="ttdef"><b>Definition:</b> req.c:169</div></div>
+<div class="ttc" id="areq_8h_html_ae653216a13c99bd072602ae3324bc77f"><div class="ttname"><a href="req_8h.html#ae653216a13c99bd072602ae3324bc77f">parse_req</a></div><div class="ttdeci">req_t * parse_req(char *req_str, int size)</div><div class="ttdoc">Parses the HTTP request string sent by client.</div><div class="ttdef"><b>Definition:</b> req.c:6</div></div>
+<div class="ttc" id="areq_8h_html_ae71ab592a6686782d334181a1ca0d240"><div class="ttname"><a href="req_8h.html#ae71ab592a6686782d334181a1ca0d240">get_req_body</a></div><div class="ttdeci">char * get_req_body(req_t *req)</div><div class="ttdoc">Get the body of request.</div><div class="ttdef"><b>Definition:</b> req.c:139</div></div>
+<div class="ttc" id="astructreq__t_html"><div class="ttname"><a href="structreq__t.html">req_t</a></div><div class="ttdoc">Request made by client.</div><div class="ttdef"><b>Definition:</b> req.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

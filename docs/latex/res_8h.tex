@@ -1,0 +1,190 @@
+\hypertarget{res_8h}{}\doxysection{include/res.h File Reference}
+\label{res_8h}\index{include/res.h@{include/res.h}}
+
+
+This contains all the response related material.  
+
+
+{\ttfamily \#include $<$libhmap/hmap.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structres__t}{res\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{res_8h_a9cb74dfc4803a5e57619bcf462360e6e}\label{res_8h_a9cb74dfc4803a5e57619bcf462360e6e}} 
+\#define {\bfseries \+\_\+\+\_\+\+BASE\+\_\+\+\_\+}~\char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Base from where files are looked up. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{res_8h_a524e34c55aaad341cd897ad319e447d0}{status\+\_\+codes\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the {\ttfamily status\+\_\+codes} hmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_adedf2ef52ff9b5b1640728a860f443bf}{mime\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the {\ttfamily mime\+\_\+types} hmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}{res\+\_\+send}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$body)
+\begin{DoxyCompactList}\small\item\em Send response to client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_a1fe3351b22b501041abc7bfc085774dd}{res\+\_\+send\+\_\+file}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Send a file to the client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}{set\+\_\+res\+\_\+body}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$body)
+\begin{DoxyCompactList}\small\item\em Set the body of the response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_a65b3bdc9086ac83543ac266f9717eb87}{set\+\_\+res\+\_\+status}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, u\+\_\+int16\+\_\+t status)
+\begin{DoxyCompactList}\small\item\em Set the status code of the response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{res_8h_a3cdbc7f4fe77c91a0e14fa302a6d931c}{set\+\_\+res\+\_\+header}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, const char $\ast$header, char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Set a particular header of the response. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{res_8h_a4554fbc54a9b38eb36e7ca4e60f051d6}{get\+\_\+res\+\_\+header}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, const char $\ast$header)
+\begin{DoxyCompactList}\small\item\em Get the value of a particular header of the response. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This contains all the response related material. 
+
+\begin{DoxyAuthor}{Author}
+Saurav Pal (resyfer) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000004}{Bug}}]No known bugs \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{res_8h_a4554fbc54a9b38eb36e7ca4e60f051d6}\label{res_8h_a4554fbc54a9b38eb36e7ca4e60f051d6}} 
+\index{res.h@{res.h}!get\_res\_header@{get\_res\_header}}
+\index{get\_res\_header@{get\_res\_header}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{get\_res\_header()}{get\_res\_header()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+res\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{const char $\ast$}]{header }\end{DoxyParamCaption})}
+
+
+
+Get the value of a particular header of the response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em header} & Header name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ Value of header in the response. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{res_8h_adedf2ef52ff9b5b1640728a860f443bf}\label{res_8h_adedf2ef52ff9b5b1640728a860f443bf}} 
+\index{res.h@{res.h}!mime\_init@{mime\_init}}
+\index{mime\_init@{mime\_init}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{mime\_init()}{mime\_init()}}
+{\footnotesize\ttfamily void mime\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the {\ttfamily mime\+\_\+types} hmap. 
+
+The {\ttfamily mime\+\_\+types} is initialized to contain all of the popular extensions and their mime-\/types. \mbox{\Hypertarget{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}\label{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}} 
+\index{res.h@{res.h}!res\_send@{res\_send}}
+\index{res\_send@{res\_send}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{res\_send()}{res\_send()}}
+{\footnotesize\ttfamily void res\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{char $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Send response to client. 
+
+This sends the response to the client (gets the client ID through res-\/\texorpdfstring{$>$}{>}client) and sets the res-\/\texorpdfstring{$>$}{>}sent to true. It prevents sending a response if res-\/\texorpdfstring{$>$}{>}sent is already true.
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em body} & Body to be sent in the response \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{res_8h_a1fe3351b22b501041abc7bfc085774dd}\label{res_8h_a1fe3351b22b501041abc7bfc085774dd}} 
+\index{res.h@{res.h}!res\_send\_file@{res\_send\_file}}
+\index{res\_send\_file@{res\_send\_file}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{res\_send\_file()}{res\_send\_file()}}
+{\footnotesize\ttfamily void res\+\_\+send\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Send a file to the client. 
+
+It sends the file at the specified path to the client. The usage can be like the following
+
+\#undef {\bfseries{BASE}} \#define {\bfseries{BASE}} \char`\"{}/home/user/server\char`\"{}
+
+res\+\_\+send\+\_\+file(res, {\bfseries{BASE}} \char`\"{}/index.\+html\char`\"{});
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em path} & Absolute path of the file. \\
+\hline
+\end{DoxyParams}
+Malloc gives error on modifying the pointer itself\mbox{\Hypertarget{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}\label{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}} 
+\index{res.h@{res.h}!set\_res\_body@{set\_res\_body}}
+\index{set\_res\_body@{set\_res\_body}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{set\_res\_body()}{set\_res\_body()}}
+{\footnotesize\ttfamily void set\+\_\+res\+\_\+body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{char $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Set the body of the response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em body} & Body to send to client. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{res_8h_a3cdbc7f4fe77c91a0e14fa302a6d931c}\label{res_8h_a3cdbc7f4fe77c91a0e14fa302a6d931c}} 
+\index{res.h@{res.h}!set\_res\_header@{set\_res\_header}}
+\index{set\_res\_header@{set\_res\_header}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{set\_res\_header()}{set\_res\_header()}}
+{\footnotesize\ttfamily void set\+\_\+res\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{const char $\ast$}]{header,  }\item[{char $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Set a particular header of the response. 
+
+It sets a {\ttfamily header} to the given {\ttfamily value} in the response sent by the client and any case of setting it multiple times will lead to the latest one being considered.
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em header} & Header name \\
+\hline
+{\em value} & Value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{res_8h_a65b3bdc9086ac83543ac266f9717eb87}\label{res_8h_a65b3bdc9086ac83543ac266f9717eb87}} 
+\index{res.h@{res.h}!set\_res\_status@{set\_res\_status}}
+\index{set\_res\_status@{set\_res\_status}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{set\_res\_status()}{set\_res\_status()}}
+{\footnotesize\ttfamily void set\+\_\+res\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{u\+\_\+int16\+\_\+t}]{status }\end{DoxyParamCaption})}
+
+
+
+Set the status code of the response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Response \\
+\hline
+{\em status} & Status Code for HTTP Response \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{res_8h_a524e34c55aaad341cd897ad319e447d0}\label{res_8h_a524e34c55aaad341cd897ad319e447d0}} 
+\index{res.h@{res.h}!status\_codes\_init@{status\_codes\_init}}
+\index{status\_codes\_init@{status\_codes\_init}!res.h@{res.h}}
+\doxysubsubsection{\texorpdfstring{status\_codes\_init()}{status\_codes\_init()}}
+{\footnotesize\ttfamily void status\+\_\+codes\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the {\ttfamily status\+\_\+codes} hmap. 
+
+The {\ttfamily status\+\_\+codes} is initialized to contain all of the status codes as well as their message. 

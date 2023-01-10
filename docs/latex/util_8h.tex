@@ -1,0 +1,78 @@
+\hypertarget{util_8h}{}\doxysection{include/util.h File Reference}
+\label{util_8h}\index{include/util.h@{include/util.h}}
+
+
+This contains all the utilities used through the library.  
+
+
+{\ttfamily \#include $<$libcol/col.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{util_8h_a44d90f083b0b02ed73a51f64bcd6dc9b}\label{util_8h_a44d90f083b0b02ed73a51f64bcd6dc9b}} 
+\#define {\bfseries success}(msg)~print\+\_\+info(msg, GREEN, false, false, NULL, 0);
+\begin{DoxyCompactList}\small\item\em Macros to print success, warning and error in colors and bold as well exit the process if required. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{util_8h_a01029ba0112aac212ad5403f41151048}\label{util_8h_a01029ba0112aac212ad5403f41151048}} 
+\#define {\bfseries warning}(msg)~print\+\_\+info(msg, YELLOW, false, true, \+\_\+\+\_\+\+FILE\+\_\+\+\_\+, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+);
+\item 
+\mbox{\Hypertarget{util_8h_a5924a4a2ac1a09a8c6679579dc22249e}\label{util_8h_a5924a4a2ac1a09a8c6679579dc22249e}} 
+\#define {\bfseries error}(msg)~print\+\_\+info(msg, RED, true, true, \+\_\+\+\_\+\+FILE\+\_\+\+\_\+, \+\_\+\+\_\+\+LINE\+\_\+\+\_\+);
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{util_8h_a5312bc0f632381c9d4a041ed5ae65ee1}{print\+\_\+info}} (const char $\ast$msg, color\+\_\+t color, bool exit\+\_\+process, bool print\+\_\+line, const char $\ast$file, int line)
+\begin{DoxyCompactList}\small\item\em An internal function used by error, warning and success to print the messages, along with necessary elements like line number or file name and even the option to exit out of the process with an exit(1) \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{util_8h_a1402abd6239482c425e2c228e86733ca}{tokenize}} (char $\ast$s, char c)
+\begin{DoxyCompactList}\small\item\em This splits the string s at the first occurence of character c in s. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This contains all the utilities used through the library. 
+
+\begin{DoxyAuthor}{Author}
+Saurav Pal (resyfer) 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000006}{Bug}}]No known bugs \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{util_8h_a5312bc0f632381c9d4a041ed5ae65ee1}\label{util_8h_a5312bc0f632381c9d4a041ed5ae65ee1}} 
+\index{util.h@{util.h}!print\_info@{print\_info}}
+\index{print\_info@{print\_info}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{print\_info()}{print\_info()}}
+{\footnotesize\ttfamily void print\+\_\+info (\begin{DoxyParamCaption}\item[{const char $\ast$}]{msg,  }\item[{color\+\_\+t}]{color,  }\item[{bool}]{exit\+\_\+process,  }\item[{bool}]{print\+\_\+line,  }\item[{const char $\ast$}]{file,  }\item[{int}]{line }\end{DoxyParamCaption})}
+
+
+
+An internal function used by error, warning and success to print the messages, along with necessary elements like line number or file name and even the option to exit out of the process with an exit(1) 
+
+Please don\textquotesingle{}t use this outside of util.\+c \mbox{\Hypertarget{util_8h_a1402abd6239482c425e2c228e86733ca}\label{util_8h_a1402abd6239482c425e2c228e86733ca}} 
+\index{util.h@{util.h}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily char $\ast$ tokenize (\begin{DoxyParamCaption}\item[{char $\ast$}]{s,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+This splits the string s at the first occurence of character c in s. 
+
+Then s becomes the original string till that character, while the returned value points to the string that was split from it. It can be used like this\+:
+
+char s\mbox{[}\mbox{]} = \char`\"{}hello world foo bye\char`\"{};
+
+char $\ast$k = tokenize(s, \textquotesingle{} \textquotesingle{});
+
+now s is \char`\"{}hello\char`\"{} while k is \char`\"{}world foo bye\char`\"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}

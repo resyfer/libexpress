@@ -214,10 +214,10 @@ vroute(router_t *router, const char *path, const char *method, vector_t *control
 
 	router_t *temp = router;
 
-	char *k, *l = p; // Reverse assignment for first iteration
+	char *k, *l = p; // Interchanged assignment for first iteration
 	while(*l) {
 
-		// Exchange l and k for token
+		// Exchange l and k for token from previous iteration
 		char *t = l;
 		l = k;
 		k = t;
@@ -235,8 +235,7 @@ vroute(router_t *router, const char *path, const char *method, vector_t *control
 			temp->child_routers = hmap_new_cap(5);
 
 			temp2 = malloc(sizeof(router_t));
-			temp2->path = malloc(sizeof(char) * (n+1));
-			strcpy(temp2->path, k);
+			temp2->path = strdup(k);
 			temp2->routes = NULL;
 
 			hmap_push(temp->child_routers, temp2->path, (void*) temp2);
@@ -249,8 +248,7 @@ vroute(router_t *router, const char *path, const char *method, vector_t *control
 		if(!temp2) {
 			temp2 = malloc(sizeof(router_t));
 			temp2->child_routers = NULL;
-			temp2->path = malloc(sizeof(char) * (n+1));
-			strcpy(temp2->path, k);
+			temp2->path = strdup(k);
 			temp2->routes = NULL;
 
 			hmap_push(temp->child_routers, temp2->path, (void*) temp2);

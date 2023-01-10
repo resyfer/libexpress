@@ -10,40 +10,41 @@
 \DoxyCodeLine{16 \textcolor{preprocessor}{\#include <libvector/vector.h>}}
 \DoxyCodeLine{17 }
 \DoxyCodeLine{18 \textcolor{comment}{/* Header Includes */}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}controller.h"{}}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}util.h"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{controller_8h}{controller.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{util_8h}{util.h}}"{}}}
 \DoxyCodeLine{21 }
 \DoxyCodeLine{25 \textcolor{keyword}{typedef} u\_int16\_t \mbox{\hyperlink{router_8h_ada67be506b5793f1a74686c498c4a866}{port\_t}};}
 \DoxyCodeLine{26 }
 \DoxyCodeLine{34 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
 \DoxyCodeLine{35     vector\_t *controllers;}
 \DoxyCodeLine{36 \} \mbox{\hyperlink{structroute__t}{route\_t}};}
-\DoxyCodeLine{37 \textcolor{preprocessor}{\#define ROUTE\_END NULL}}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{50 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
-\DoxyCodeLine{51     \textcolor{keywordtype}{char} *path;}
-\DoxyCodeLine{52     hmap\_t *routes; \textcolor{comment}{/* Of type route\_t */}}
-\DoxyCodeLine{53     hmap\_t *child\_routers; \textcolor{comment}{/* Of type router\_t */}}
-\DoxyCodeLine{54 \} \mbox{\hyperlink{structrouter__t}{router\_t}};}
-\DoxyCodeLine{55 \textcolor{keyword}{typedef} \mbox{\hyperlink{structrouter__t}{router\_t}} \mbox{\hyperlink{structrouter__t}{server\_t}};}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{57 \textcolor{comment}{// TODO:}}
-\DoxyCodeLine{58 \textcolor{comment}{// router\_t* router\_new(server\_t *server, char *path);}}
-\DoxyCodeLine{59 \textcolor{comment}{// void router\_use(router\_t *router, char *path, middleware\_t middleware);}}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{68 \mbox{\hyperlink{structroute__t}{route\_t}}* \mbox{\hyperlink{router_8h_a175d8e29afb8287b392c116626bc7fa6}{find\_route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \mbox{\hyperlink{structreq__t}{req\_t}} *req);}
-\DoxyCodeLine{69 }
-\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}{route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \textcolor{keywordtype}{char}* method, ...);}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{89 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}{route\_get}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{90 }
-\DoxyCodeLine{91 }
-\DoxyCodeLine{100 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}{route\_post}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{110 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_aa14ea43203313f72f17859b089ea8c3f}{route\_put}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{111 }
-\DoxyCodeLine{120 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}{route\_delete}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
-\DoxyCodeLine{121 }
-\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define ROUTE\_END NULL}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{57 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{58     \textcolor{keywordtype}{char} *path;}
+\DoxyCodeLine{59     hmap\_t *routes; \textcolor{comment}{/* Of type route\_t */}}
+\DoxyCodeLine{60     hmap\_t *child\_routers; \textcolor{comment}{/* Of type router\_t */}}
+\DoxyCodeLine{61 \} \mbox{\hyperlink{structrouter__t}{router\_t}};}
+\DoxyCodeLine{62 \textcolor{keyword}{typedef} \mbox{\hyperlink{structrouter__t}{router\_t}} \mbox{\hyperlink{structrouter__t}{server\_t}};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{// TODO:}}
+\DoxyCodeLine{65 \textcolor{comment}{// router\_t* router\_new(server\_t *server, char *path);}}
+\DoxyCodeLine{66 \textcolor{comment}{// void router\_use(router\_t *router, char *path, middleware\_t middleware);}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{75 \mbox{\hyperlink{structroute__t}{route\_t}}* \mbox{\hyperlink{router_8h_a175d8e29afb8287b392c116626bc7fa6}{find\_route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \mbox{\hyperlink{structreq__t}{req\_t}} *req);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{86 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a1c2305a1ac935f9e43dcb3ca6d57ec85}{route}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, \textcolor{keywordtype}{char}* method, ...);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_af5a0cfbc96b9abec3731f7a3513ad161}{route\_get}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{107 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_ac18028e5c87b1f07d8bcf34898cc2eb7}{route\_post}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{117 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_aa14ea43203313f72f17859b089ea8c3f}{route\_put}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{127 \textcolor{keywordtype}{void} \mbox{\hyperlink{router_8h_a0184da1a7e550b112cecf1e20ea3aa0f}{route\_delete}}(\mbox{\hyperlink{structrouter__t}{router\_t}} *router, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path, ...);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

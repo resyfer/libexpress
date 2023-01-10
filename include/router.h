@@ -34,6 +34,13 @@ typedef u_int16_t port_t;
 typedef struct {
 	vector_t *controllers;
 } route_t;
+
+/**
+ * @brief A macro that defines the end of the controllers in a router.
+ *
+ * It defines the end of the controllers in a route and is to be used as a
+ * parameter after the final controller.
+ */
 #define ROUTE_END NULL
 
 /**

@@ -1,35 +1,43 @@
 \hypertarget{req_8h_source}{}\doxysection{req.\+h}
 \label{req_8h_source}\index{include/req.h@{include/req.h}}
-
+\mbox{\hyperlink{req_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_LIBEXPRESS\_REQ\_H}}
-\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_LIBEXPRESS\_REQ\_H 1}}
-\DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <libhmap/hmap.h>}}
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <libqueue/queue.h>}}
-\DoxyCodeLine{6 }
-\DoxyCodeLine{7 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
-\DoxyCodeLine{8     \textcolor{keywordtype}{char} *method;}
-\DoxyCodeLine{9     \textcolor{keywordtype}{char} *path;}
-\DoxyCodeLine{10     hmap\_t *queries;}
-\DoxyCodeLine{11     hmap\_t *headers;}
-\DoxyCodeLine{12     hmap\_t *params;}
-\DoxyCodeLine{13     \textcolor{keywordtype}{char} *body;}
-\DoxyCodeLine{14     queue\_t *c\_queue; \textcolor{comment}{//controller queue, includes middlewares as well}}
-\DoxyCodeLine{15 \} \mbox{\hyperlink{structreq__t}{req\_t}};}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \mbox{\hyperlink{structreq__t}{req\_t}}* parse\_req(\textcolor{keywordtype}{char} *req\_str, \textcolor{keywordtype}{int} size);}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{comment}{/* Utility */}}
-\DoxyCodeLine{20 \textcolor{keywordtype}{char}* get\_req\_body(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
-\DoxyCodeLine{21 \textcolor{keywordtype}{char}* get\_req\_header(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
-\DoxyCodeLine{22 \textcolor{keywordtype}{char}* get\_req\_method(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
-\DoxyCodeLine{23 \textcolor{keywordtype}{char}* get\_req\_param(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* param);}
-\DoxyCodeLine{24 \textcolor{keywordtype}{char}* get\_req\_path(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
-\DoxyCodeLine{25 \textcolor{keywordtype}{char}* get\_req\_query(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* query);}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27 \textcolor{comment}{// TODO: Add instructions in docs for iterating through maps}}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifndef \_\_LIBEXPRESS\_REQ\_H}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define \_\_LIBEXPRESS\_REQ\_H 1}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{/* Personal Libraries */}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <libhmap/hmap.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <libqueue/queue.h>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{22     \textcolor{keywordtype}{char} *method;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{char} *path;}
+\DoxyCodeLine{24     hmap\_t *queries; \textcolor{comment}{// queries like /hello?query1=value1\&query2=value2}}
+\DoxyCodeLine{25     hmap\_t *headers;}
+\DoxyCodeLine{26     hmap\_t *params; \textcolor{comment}{// params like /person/1234abcde}}
+\DoxyCodeLine{27     \textcolor{keywordtype}{char} *body;}
+\DoxyCodeLine{28     queue\_t *c\_queue; \textcolor{comment}{//controller queue, includes middlewares as well}}
+\DoxyCodeLine{29 \} \mbox{\hyperlink{structreq__t}{req\_t}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{42 \mbox{\hyperlink{structreq__t}{req\_t}}* \mbox{\hyperlink{req_8h_ae653216a13c99bd072602ae3324bc77f}{parse\_req}}(\textcolor{keywordtype}{char} *req\_str, \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{/* Utility */}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{52 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_ae71ab592a6686782d334181a1ca0d240}{get\_req\_body}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{61 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_a32e7ae395e796bbf8e402ae51c33d1ea}{get\_req\_header}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{69 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_a70350b2911a6d23eb792ea1b9f98bf19}{get\_req\_method}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{82 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_a06b8bbbc1b3892e0eef3d3d21a6d7ab2}{get\_req\_param}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* param);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{95 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_a2f6157fd46467c20cd435ada0388aed7}{get\_req\_path}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{112 \textcolor{keywordtype}{char}* \mbox{\hyperlink{req_8h_a96c7d50ece767a43466abd2d3551e291}{get\_req\_query}}(\mbox{\hyperlink{structreq__t}{req\_t}}* req, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* query);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{// TODO: Add instructions in docs for iterating through maps}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

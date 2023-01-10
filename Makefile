@@ -54,7 +54,7 @@ install: $(NAME).so $(HEAD_DIR)/$(ENTRY).h
 	@echo "Done!"
 
 docs:
-	@doxygen 14> /dev/null
+	@doxygen 1> /dev/null
 	@echo "Documentation created!"
 	@echo ""
 	@echo "Copy the following link and open in a browser:"

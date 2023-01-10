@@ -128,14 +128,16 @@ mime_init(void)
 void
 res_send(res_t *res, char* body)
 {
+	if(res->next) {
+		error("Please stop the control flow if next is reached.");
+	}
+
 	if(res->sent) {
 		error("Can not send response more than once for the same request\n");
 		return;
 	}
 
-	res->sent = true;
-
-	char status[4] = {0};
+	char status[4] = {0}; // 3 digit status code
 	sprintf(status, "%d", res->status);
 
 	char response[1024] = {0};
@@ -143,15 +145,21 @@ res_send(res_t *res, char* body)
 	int j = 0;
 
 	// Status Line
-	j += sprintf(response + j, "HTTP/1.1 ");
-	j += sprintf(response + j, "%d %s\r\n", res->status, hmap_get(status_codes, status));
+	j += sprintf(response + j, "HTTP/1.1 "); // Supports only HTTP/1.1 as of now
+
+	char *status_str = hmap_get(status_codes, status);
+	if(!status_str) {
+		error("Please use a proper status code.");
+	}
+	j += sprintf(response + j, "%d %s\r\n", res->status, status_str);
 
 	// Headers
 
 	if(!hmap_get(res->headers, "Content-Type")) {
-		hmap_push(res->headers, "Content-Type", "text/plain"); // Default
+		hmap_push(res->headers, "Content-Type", "text/plain"); // Default value
 	}
 
+	// TODO: A node deletion helper function in hmap
 	j += sprintf(response + j, "%s: %d\r\n", "Content-Length", strlen(body));
 
 	hmap_itr_t *itr = hmap_itr_new(res->headers);
@@ -168,6 +176,8 @@ res_send(res_t *res, char* body)
 
 	// Sending
 	write(res->client, response, sizeof(char) * (strlen(response) + 1));
+
+	res->sent = true;
 }
 
 void
@@ -187,7 +197,7 @@ res_send_file(res_t *res, char *file_path)
 	struct stat sb;
 	if(!fd || fstat(fd, &sb) == -1) {
 		res->status = 404;
-		res_send(res, "");
+		res_send(res, "File not found.");
 		close(fd);
 		return;
 	}
@@ -220,6 +230,7 @@ res_send_file(res_t *res, char *file_path)
 }
 
 /* Utility */
+
 void
 set_res_body(res_t* res, char* body)
 {

@@ -77,20 +77,23 @@ $(function() {
   <div class="headertitle"><div class="title">util.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __LIBEXPRESS_UTIL_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __LIBEXPRESS_UTIL_H 1</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;libcol/col.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">void</span> print_info(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg, color_t color, <span class="keywordtype">bool</span> exit_process, <span class="keywordtype">bool</span> print_line, <span class="keyword">const</span> <span class="keywordtype">char</span>* file, <span class="keywordtype">int</span> line);</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define success(msg) print_info(msg, GREEN, false, false, NULL, 0);</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define warning(msg) print_info(msg, YELLOW, false, true, __FILE__, __LINE__);</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define error(msg) print_info(msg, RED, true, true, __FILE__, __LINE__);</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">char</span>* tokenize(<span class="keywordtype">char</span>* s, <span class="keywordtype">char</span> c);</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif</span></div>
+<a href="util_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef __LIBEXPRESS_UTIL_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define __LIBEXPRESS_UTIL_H 1</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;libcol/col.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> <a class="code hl_function" href="util_8h.html#a5312bc0f632381c9d4a041ed5ae65ee1">print_info</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *msg, color_t color, <span class="keywordtype">bool</span> exit_process, <span class="keywordtype">bool</span> print_line, <span class="keyword">const</span> <span class="keywordtype">char</span>* file, <span class="keywordtype">int</span> line);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="util_8h.html#a44d90f083b0b02ed73a51f64bcd6dc9b">   27</a></span><span class="preprocessor">#define success(msg) print_info(msg, GREEN, false, false, NULL, 0);</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define warning(msg) print_info(msg, YELLOW, false, true, __FILE__, __LINE__);</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define error(msg) print_info(msg, RED, true, true, __FILE__, __LINE__);</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">char</span>* <a class="code hl_function" href="util_8h.html#a1402abd6239482c425e2c228e86733ca">tokenize</a>(<span class="keywordtype">char</span>* s, <span class="keywordtype">char</span> c);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="autil_8h_html_a1402abd6239482c425e2c228e86733ca"><div class="ttname"><a href="util_8h.html#a1402abd6239482c425e2c228e86733ca">tokenize</a></div><div class="ttdeci">char * tokenize(char *s, char c)</div><div class="ttdoc">This splits the string s at the first occurence of character c in s.</div><div class="ttdef"><b>Definition:</b> util.c:30</div></div>
+<div class="ttc" id="autil_8h_html_a5312bc0f632381c9d4a041ed5ae65ee1"><div class="ttname"><a href="util_8h.html#a5312bc0f632381c9d4a041ed5ae65ee1">print_info</a></div><div class="ttdeci">void print_info(const char *msg, color_t color, bool exit_process, bool print_line, const char *file, int line)</div><div class="ttdoc">An internal function used by error, warning and success to print the messages, along with necessary e...</div><div class="ttdef"><b>Definition:</b> util.c:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
