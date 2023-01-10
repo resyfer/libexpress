@@ -21,6 +21,9 @@
 #define __BASE__ ""
 #endif
 
+/**
+ * @brief Response being sent to the client
+ */
 typedef struct {
 	u_int16_t status;
 	hmap_t *headers;
