@@ -19,7 +19,9 @@ int $\ast$ {\bfseries client}
 \doxysubsection{Detailed Description}
 Connection Handler arguments. 
 
-Due to connection handler being run in a thread, this data structure holds the file descriptor of the client, as well as the server instance to pass it down to the {\ttfamily connection handler} 
+Due to connection handler being run in a thread, this structure holds the file descriptor of the client, as well as the server instance to pass it down to the {\ttfamily connection handler} function.
+
+Just a temporary struct used to pass arguments into the {\ttfamily connection\+\_\+handler} function. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -7,12 +7,14 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{4 \textcolor{preprocessor}{\#include <libcol/col.h>}}
 \DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{keywordtype}{void} print\_ok(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg);}
-\DoxyCodeLine{7 \textcolor{keywordtype}{void} print\_warning(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *warning);}
-\DoxyCodeLine{8 \textcolor{keywordtype}{void} print\_error(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *err);}
-\DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{keywordtype}{char}* tokenize(\textcolor{keywordtype}{char}* s, \textcolor{keywordtype}{char} c);}
+\DoxyCodeLine{6 \textcolor{keywordtype}{void} print\_info(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg, color\_t color, \textcolor{keywordtype}{bool} exit\_process, \textcolor{keywordtype}{bool} print\_line, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* file, \textcolor{keywordtype}{int} line);}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define success(msg) print\_info(msg, GREEN, false, false, NULL, 0);}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define warning(msg) print\_info(msg, YELLOW, false, true, \_\_FILE\_\_, \_\_LINE\_\_);}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define error(msg) print\_info(msg, RED, true, true, \_\_FILE\_\_, \_\_LINE\_\_);}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 \textcolor{keywordtype}{char}* tokenize(\textcolor{keywordtype}{char}* s, \textcolor{keywordtype}{char} c);}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
