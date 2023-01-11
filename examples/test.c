@@ -36,12 +36,12 @@ int main() {
 
 	route_get(app, "/hello", middle, MID_END, hi);
 	route_get(app, "/hello/bye", MID_END, hi);
-	// route_get(app, "/:file", MID_END, adios);
-	// route_get(app, "/", MID_END, NULL);
+	route_get(app, "/:file", MID_END, adios);
+	route_get(app, "/", MID_END, NULL);
 
-	// route(app, "/foo", "*", MID_END, frontend);
+	route(app, "/foo", "*", MID_END, frontend);
 
-	// route_post(app, "/hello/:id/world", MID_END, blah);
+	route_post(app, "/hello/:id/world", MID_END, blah);
 
 	server_listen(app, 3000);
 	return 0;

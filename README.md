@@ -13,7 +13,7 @@ It uses a [thread-pool](https://github.com/resyfer/libtpool) under the hood to h
 
 You will find a tutorial [here](/TUTORIAL.md), full
 documentation [here](https://libexpress-doxygen.netlify.app/) and the
-installation instructions [here](/INSTALL.md).
+installation instructions [here](/INSTALL.md) and a TL;DR version [here](/examples/test.c)
 
 ## Contributing
 
