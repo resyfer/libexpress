@@ -16,33 +16,32 @@
 \DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_BASE\_\_ "{}"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
-\DoxyCodeLine{25     u\_int16\_t status;}
-\DoxyCodeLine{26     hmap\_t *headers;}
-\DoxyCodeLine{27     \textcolor{keywordtype}{char} *body;}
-\DoxyCodeLine{28     \textcolor{keywordtype}{bool} sent; \textcolor{comment}{// To check if response has already been sent}}
-\DoxyCodeLine{29     \textcolor{keywordtype}{bool} next; \textcolor{comment}{// To transfer control to the next middleware}}
-\DoxyCodeLine{30     \textcolor{keywordtype}{int} client; \textcolor{comment}{// To identify who to send the response to}}
-\DoxyCodeLine{31 \} \mbox{\hyperlink{structres__t}{res\_t}};}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{39 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a524e34c55aaad341cd897ad319e447d0}{status\_codes\_init}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{47 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_adedf2ef52ff9b5b1640728a860f443bf}{mime\_init}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{59 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}{res\_send}}(\mbox{\hyperlink{structres__t}{res\_t}} *res, \textcolor{keywordtype}{char}* body);}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{75 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a1fe3351b22b501041abc7bfc085774dd}{res\_send\_file}}(\mbox{\hyperlink{structres__t}{res\_t}} *res, \textcolor{keywordtype}{char} *path);}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77 \textcolor{comment}{/* Utility */}}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{85 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}{set\_res\_body}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keywordtype}{char}* body);}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a65b3bdc9086ac83543ac266f9717eb87}{set\_res\_status}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, u\_int16\_t status);}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{106 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a3cdbc7f4fe77c91a0e14fa302a6d931c}{set\_res\_header}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header, \textcolor{keywordtype}{char}* value);}
-\DoxyCodeLine{107 }
-\DoxyCodeLine{115 \textcolor{keywordtype}{char}* \mbox{\hyperlink{res_8h_a4554fbc54a9b38eb36e7ca4e60f051d6}{get\_res\_header}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
-\DoxyCodeLine{116 }
-\DoxyCodeLine{117 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{28     u\_int16\_t status;}
+\DoxyCodeLine{29     hmap\_t *headers;}
+\DoxyCodeLine{30     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *body;}
+\DoxyCodeLine{31     \textcolor{keywordtype}{bool} sent; \textcolor{comment}{// To check if response has already been sent}}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} client; \textcolor{comment}{// To identify who to send the response to}}
+\DoxyCodeLine{33 \} \mbox{\hyperlink{structres__t}{res\_t}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{41 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a524e34c55aaad341cd897ad319e447d0}{status\_codes\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{49 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_adedf2ef52ff9b5b1640728a860f443bf}{mime\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{60 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_aa14b2c9b3539b2512a83239083de501c}{res\_send}}(\mbox{\hyperlink{structres__t}{res\_t}} *res);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{76 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_aa3d58ecd0b415ac6627d4168b57aaed6}{res\_send\_file}}(\mbox{\hyperlink{structres__t}{res\_t}} *res, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *path);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{/* Utility */}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{86 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}{set\_res\_body}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keywordtype}{char}* body);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a65b3bdc9086ac83543ac266f9717eb87}{set\_res\_status}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, u\_int16\_t status);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{107 \textcolor{keywordtype}{void} \mbox{\hyperlink{res_8h_a3cdbc7f4fe77c91a0e14fa302a6d931c}{set\_res\_header}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header, \textcolor{keywordtype}{char}* value);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{116 \textcolor{keywordtype}{char}* \mbox{\hyperlink{res_8h_a4554fbc54a9b38eb36e7ca4e60f051d6}{get\_res\_header}}(\mbox{\hyperlink{structres__t}{res\_t}}* res, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* header);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

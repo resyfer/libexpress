@@ -11,7 +11,7 @@ This contains all the response related material.
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structres__t}{res\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Response being sent to the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,9 +25,9 @@ void \mbox{\hyperlink{res_8h_a524e34c55aaad341cd897ad319e447d0}{status\+\_\+code
 \begin{DoxyCompactList}\small\item\em Initialize the {\ttfamily status\+\_\+codes} hmap. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{res_8h_adedf2ef52ff9b5b1640728a860f443bf}{mime\+\_\+init}} (void)
 \begin{DoxyCompactList}\small\item\em Initialize the {\ttfamily mime\+\_\+types} hmap. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}{res\+\_\+send}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$body)
+void \mbox{\hyperlink{res_8h_aa14b2c9b3539b2512a83239083de501c}{res\+\_\+send}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res)
 \begin{DoxyCompactList}\small\item\em Send response to client. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{res_8h_a1fe3351b22b501041abc7bfc085774dd}{res\+\_\+send\+\_\+file}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$path)
+void \mbox{\hyperlink{res_8h_aa3d58ecd0b415ac6627d4168b57aaed6}{res\+\_\+send\+\_\+file}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, const char $\ast$path)
 \begin{DoxyCompactList}\small\item\em Send a file to the client. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{res_8h_ab57fc93498974c5b3faf12f09e6fb4c8}{set\+\_\+res\+\_\+body}} (\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$res, char $\ast$body)
 \begin{DoxyCompactList}\small\item\em Set the body of the response. \end{DoxyCompactList}\item 
@@ -80,11 +80,11 @@ char$\ast$ Value of header in the response.
 
 Initialize the {\ttfamily mime\+\_\+types} hmap. 
 
-The {\ttfamily mime\+\_\+types} is initialized to contain all of the popular extensions and their mime-\/types. \mbox{\Hypertarget{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}\label{res_8h_a5dfd3245a02f8a4921c5b970a14e74e6}} 
+The {\ttfamily mime\+\_\+types} is initialized to contain all of the popular extensions and their mime-\/types. \mbox{\Hypertarget{res_8h_aa14b2c9b3539b2512a83239083de501c}\label{res_8h_aa14b2c9b3539b2512a83239083de501c}} 
 \index{res.h@{res.h}!res\_send@{res\_send}}
 \index{res\_send@{res\_send}!res.h@{res.h}}
 \doxysubsubsection{\texorpdfstring{res\_send()}{res\_send()}}
-{\footnotesize\ttfamily void res\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{char $\ast$}]{body }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void res\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res }\end{DoxyParamCaption})}
 
 
 
@@ -96,14 +96,12 @@ This sends the response to the client (gets the client ID through res-\/\texorpd
 \begin{DoxyParams}{Parameters}
 {\em res} & Response \\
 \hline
-{\em body} & Body to be sent in the response \\
-\hline
 \end{DoxyParams}
-\mbox{\Hypertarget{res_8h_a1fe3351b22b501041abc7bfc085774dd}\label{res_8h_a1fe3351b22b501041abc7bfc085774dd}} 
+\mbox{\Hypertarget{res_8h_aa3d58ecd0b415ac6627d4168b57aaed6}\label{res_8h_aa3d58ecd0b415ac6627d4168b57aaed6}} 
 \index{res.h@{res.h}!res\_send\_file@{res\_send\_file}}
 \index{res\_send\_file@{res\_send\_file}!res.h@{res.h}}
 \doxysubsubsection{\texorpdfstring{res\_send\_file()}{res\_send\_file()}}
-{\footnotesize\ttfamily void res\+\_\+send\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void res\+\_\+send\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structres__t}{res\+\_\+t}} $\ast$}]{res,  }\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
 
 
 
