@@ -1,3 +1,6 @@
+// Run with `make run` from root of `libexpress`. Make sure all dependencies
+// are install first.
+
 #include <libexpress/express.h>
 #include <stdio.h>
 #include <string.h>
