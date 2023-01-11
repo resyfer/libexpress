@@ -122,7 +122,7 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 	}
 
 	if(ret) {
-		// Push any middlewares to the controller queue
+		// Push any middlewares to the c_queue
 
 		// Match-All method middlewares
 		route_t *middleware_route = hmap_get(next_router->routes, "*");

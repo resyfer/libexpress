@@ -25,7 +25,7 @@ typedef struct {
 	hmap_t *headers;
 	hmap_t *params; // params like /person/1234abcde
 	char *body;
-	queue_t *c_queue; //controller queue, includes middlewares as well
+	queue_t *c_queue; //middleware queue, includes middlewares from other routers as well
 } req_t;
 
 /**
