@@ -15,11 +15,11 @@ For us all to be on the same page.
   response to the request.
 
 - `path`: A unique URL in the domain of the server. eg. If server is running
-  on 'helloworld.com' then in the URL 'helloworld.com/abc/def', '/abc/def' is
+  on 'helloworld.com' then in the URL `helloworld.com/abc/def`, `/abc/def` is
   the path
 
 - `method`: Refers to one of the HTTP Methods defined by the HTTP Spec. A single
-  route can have multiple methods, eg. GET '/hello' and POST '/hello'. Both the
+  route can have multiple methods, eg. `GET /hello` and `POST /hello`. Both the
   methods are *supposed* to perform different tasks, and which method is used to
   serve the request based on the method specified in the request.
 
@@ -29,26 +29,26 @@ For us all to be on the same page.
   for HTTP Requests for a specific method.
 
 - `router`: A group of a bunch of routes based on their paths. eg. Both the
-  routes for GET '/hello/world' and GET '/hello/bye' will have the common
-  router '/hello' but the router `/hello/world or '/hello/bye' is unique to
+  routes for `GET /hello/world` and `GET /hello/bye` will have the common
+  router '/hello' but the router `/hello/world` or `/hello/bye` is unique to
   both the routes respectively.
 
 - `query`: It is some additional information provided in the url for a specific
   route without sending it in the body. eg. In the URL
-  'helloworld.com/abc/def?hi=bye&foo=bar', the path is still '/abc/def', and the
-  queries are 'hi' and 'foo', with values 'bye' and 'bar' respectively.
+  `helloworld.com/abc/def?hi=bye&foo=bar`, the path is still `/abc/def`, and the
+  queries are `hi` and `foo`, with values `bye` and `bar` respectively.
 
 - `param`: It refers to the variable part of the URL that maybe used to point
-  to a specific resource eg. In the URL 'github.com/resyfer', the variable part
-  is 'resyfer', which basically refers to the username of the person who's
+  to a specific resource eg. In the URL `github.com/resyfer`, the variable part
+  is `resyfer`, which basically refers to the username of the person who's
   profile we want to view. So it would be written as `github.com/:username` and
-  thus the param would be 'username' with value 'resyfer' in this case.
+  thus the param would be `username` with value `resyfer` in this case.
 
 - `base`: Refers to the directory relative to which you want to give paths for
-  files to serve. eg. If I have files '/home/resyfer/hello/a.html' and
-  '/home/resyfer/hello/b.css', then I can set the base (shown later) as
-  '/home/resyfer/hello' and provide the paths to the file as '/a.html' and
-  '/b.css'.
+  files to serve. eg. If I have files `/home/resyfer/hello/a.html` and
+  `/home/resyfer/hello/b.css`, then I can set the base (shown later) as
+  `/home/resyfer/hello` and provide the paths to the file as `/a.html` and
+  `/b.css`.
 
 - `controller`: A user-defined function that performs a task given the request
   and sends the response.
@@ -166,6 +166,8 @@ route(app, "/rest/api/route", "method", middleware1, middleware2, ..., MID_END, 
 A special method `*` can also be used, which is a method that matches any method
 given that the method in the request is not matched by any other configured
 method, as well as assuming that a route with `*` method was configured.
+
+**NOTE**: Please use `*` in the path for configuring routers in `/hello/*` form only. `/hello/wor*` won't work, it will try to exactly match `wor*` and `/hello/*/world` will match be equivalent to `/hello/*`.
 
 ## Path
 
