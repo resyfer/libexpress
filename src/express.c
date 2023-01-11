@@ -26,7 +26,8 @@
 void controller_404(req_t *req, res_t *res) {
 	set_res_status(res, 404);
 	set_res_header(res, "Content-Type", "text/plain");
-	res_send(res, "404");
+	set_res_body(res, "404");
+	res_send(res);
 }
 
 server_t*
@@ -42,7 +43,7 @@ server_new(void)
 	app->child_routers = hmap_new_cap(5);
 
 	/* Adding the catch-all route handler for 404 requests */
-	route(app, "*", "*", controller_404);
+	route(app, "*", "*", MID_END, controller_404);
 
 	return app;
 }
@@ -115,35 +116,32 @@ connection_handler(void* args)
 	res->headers = hmap_new_cap(5);
 	res->body = NULL;
 	res->sent = false;
-	res->next = false;
 	res->client = *client;
 
 	// Execute all the middlewares and controller of the route.
 	while(1) {
-		controller_t *controller = queue_pop(req->c_queue);
+		middleware_t *middleware = queue_pop(req->c_queue);
 
-		if(!controller) {
-			if(res->next) {
-				error("Can't use next on last controller");
-			} else if(!res->sent) {
-				error("Response is not sent by end of final reachable controller");
-			}
-
+		if(!middleware) {
 			break;
 		}
 
-		controller(req, res);
+		middleware(req, res);
 
 		// If request is already sent, no need to loop again.
 		if(res->sent) {
 			break;
 		}
+	}
+	if(route->controller) {
+		route->controller(req, res);
+	} else {
+		error("No controller available");
+	}
 
-		if(res->next) {
-			res->next = false;
-		} else {
-			error("Neither `next` was reached, nor any responses were sent");
-		}
+
+	if(!res->sent) {
+		error("Controller does not send any response by the time it finishes.");
 	}
 
 	clock_t end_time = clock(); // End time for serving response
@@ -168,7 +166,6 @@ connection_handler(void* args)
 	free(req);
 
 	hmap_free(res->headers);
-	free(res->body);
 	free(res);
 
 	close(*client);

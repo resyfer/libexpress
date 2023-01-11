@@ -18,29 +18,30 @@ void adios(req_t *req, res_t *res) {
 }
 
 void blah(req_t *req, res_t *res) {
-	res_send(res, get_req_param(req, "id"));
+	set_res_body(res, get_req_param(req, "id"));
+	res_send(res);
 }
 
 void hi(req_t *req, res_t *res) {
-	res_send(res, "Hi\n");
+	set_res_body(res, "Hi\n");
+	res_send(res);
 }
 
 void middle(req_t *req, res_t *res) {
 	printf("Middle\n");
-	return next(res);
 }
 
 int main() {
 	server_t *app = server_new();
 
-	route_get(app, "/hello/*", middle, hi, ROUTE_END);
-	route_get(app, "/hello/bye", hi, ROUTE_END);
-	route_get(app, "/:file", adios, ROUTE_END);
-	route_get(app, "/", frontend, ROUTE_END);
+	route_get(app, "/hello", middle, MID_END, hi);
+	route_get(app, "/hello/bye", MID_END, hi);
+	// route_get(app, "/:file", MID_END, adios);
+	// route_get(app, "/", MID_END, NULL);
 
-	route(app, "/foo", "*", frontend, ROUTE_END);
+	// route(app, "/foo", "*", MID_END, frontend);
 
-	route_post(app, "/hello/:id/world", blah, ROUTE_END);
+	// route_post(app, "/hello/:id/world", MID_END, blah);
 
 	server_listen(app, 3000);
 	return 0;

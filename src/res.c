@@ -126,12 +126,8 @@ mime_init(void)
 
 
 void
-res_send(res_t *res, char* body)
+res_send(res_t *res)
 {
-	if(res->next) {
-		error("Please stop the control flow if next is reached.");
-	}
-
 	if(res->sent) {
 		error("Can not send response more than once for the same request\n");
 		return;
@@ -160,7 +156,7 @@ res_send(res_t *res, char* body)
 	}
 
 	// TODO: A node deletion helper function in hmap
-	j += sprintf(response + j, "%s: %d\r\n", "Content-Length", strlen(body));
+	j += sprintf(response + j, "%s: %d\r\n", "Content-Length", strlen(res->body));
 
 	hmap_itr_t *itr = hmap_itr_new(res->headers);
 	hmap_node_t *node;
@@ -172,7 +168,7 @@ res_send(res_t *res, char* body)
 	j += sprintf(response + j, "\r\n");
 
 	// Body
-	j += sprintf(response + j, "%s", body);
+	j += sprintf(response + j, "%s", res->body);
 
 	// Sending
 	write(res->client, response, sizeof(char) * (strlen(response) + 1));
@@ -181,7 +177,7 @@ res_send(res_t *res, char* body)
 }
 
 void
-res_send_file(res_t *res, char *file_path)
+res_send_file(res_t *res, const char *file_path)
 {
 	char *path = strdup(file_path);
 
@@ -197,7 +193,8 @@ res_send_file(res_t *res, char *file_path)
 	struct stat sb;
 	if(!fd || fstat(fd, &sb) == -1) {
 		res->status = 404;
-		res_send(res, "File not found.");
+		set_res_body(res, "File not found.");
+		res_send(res);
 		close(fd);
 		return;
 	}
@@ -221,7 +218,8 @@ res_send_file(res_t *res, char *file_path)
 	char *mime = hmap_get(mime_types, ext);
 
 	set_res_header(res, "Content-Type", mime);
-	res_send(res, file);
+	set_res_body(res, file);
+	res_send(res);
 
 	munmap(file, sb.st_size); // TODO: Implement status code 304
 	free(path);

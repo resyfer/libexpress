@@ -28,20 +28,21 @@ typedef u_int16_t port_t;
  * @brief Route
  *
  * It is the route for a particular method.
- * It just contains the list of all the controllers
- * falling in the route.
+ * It just contains the list of all the middlewares
+ * and controller for the route.
  */
 typedef struct {
-	vector_t *controllers;
+	vector_t *middlewares;
+	controller_t* controller;
 } route_t;
 
 /**
- * @brief A macro that defines the end of the controllers in a router.
+ * @brief A macro that defines the end of the middlewares in a router.
  *
- * It defines the end of the controllers in a route and is to be used as a
- * parameter after the final controller.
+ * It defines the end of the middlewares in a route and is to be used as a
+ * parameter before the final controller.
  */
-#define ROUTE_END NULL
+#define MID_END NULL
 
 /**
  * @brief Router
@@ -94,7 +95,6 @@ void route(router_t *router, const char *path, char* method, ...);
  * @param ... Any number of controllers or middlewares of the type `controller_t*`
  */
 void route_get(router_t *router, const char *path, ...);
-
 
 /**
  * @brief Assign a route for POST request for a router.

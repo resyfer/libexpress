@@ -10,10 +10,10 @@
 /* Find */
 
 /**
- * @brief Pushes controllers of route to controller queue
+ * @brief Pushes middlewares of route to call queue
  *
- * `req->c_queue` contains the controllers that need execution.
- * This pushes the controllers of the route to the queue in the
+ * `req->c_queue` contains the middlewares that need execution.
+ * This pushes the middlewares of the route to the queue in the
  * given order.
  *
  * @param route Router
@@ -22,14 +22,14 @@
 void
 push_to_call_queue(route_t *route, req_t *req)
 {
-	if(!route || !route->controllers) {
+	if(!route || !route->middlewares) {
 		return;
 	}
 
-	int n = vec_size(route->controllers);
+	int n = vec_size(route->middlewares);
 	for(u_int32_t i = 0; i<n; i++) {
-		controller_t *controller = vec_get(route->controllers, i);
-		if(controller == ROUTE_END) {
+		controller_t *controller = vec_get(route->middlewares, i);
+		if(controller == MID_END) {
 			break;
 		}
 		queue_push(req->c_queue, (void*) controller);
@@ -123,7 +123,15 @@ find_route_r(router_t *router, req_t *req, vector_t *tokens, u_int32_t index)
 
 	if(ret) {
 		// Push any middlewares to the controller queue
+
+		// Match-All method middlewares
 		route_t *middleware_route = hmap_get(next_router->routes, "*");
+		if(middleware_route) {
+			push_to_call_queue(middleware_route, req);
+		}
+
+		// Method Specific Middlewares
+		middleware_route = hmap_get(next_router->routes, req->method);
 		if(middleware_route) {
 			push_to_call_queue(middleware_route, req);
 		}
@@ -204,10 +212,11 @@ find_route(router_t *router, req_t *req)
  * @param router Router
  * @param path Path
  * @param method Method
- * @param controllers Vector of controllers for the route
+ * @param middlewares Vector of middlewares for the route
+ * @param controller Controller for route
  */
 void
-vroute(router_t *router, const char *path, const char *method, vector_t *controllers)
+vroute(router_t *router, const char *path, const char *method, vector_t *middlewares, controller_t* controller)
 {
 
 	char *p = strdup(path);
@@ -259,13 +268,15 @@ vroute(router_t *router, const char *path, const char *method, vector_t *control
 	}
 
 	route_t *route = malloc(sizeof(route_t));
-	route->controllers = controllers;
+	route->middlewares = middlewares;
 
 	if(!temp->routes) {
 		temp->routes = hmap_new_cap(3);
 	}
 
 	hmap_push(temp->routes, method, (void*) route);
+
+	route->controller = controller;
 
 	free(p);
 }
@@ -275,18 +286,19 @@ void route(router_t *router, const char *path, char* method, ...)
 	va_list args;
 	va_start(args, method);
 
-	vector_t* controllers = vec_new();
+	vector_t* middlewares = vec_new();
 
 	while(1) {
-		controller_t *controller = va_arg(args, controller_t*);
-		if(controller == ROUTE_END) {
+		middleware_t *middleware = va_arg(args, middleware_t*);
+		if(middleware == MID_END) {
 			break;
 		}
-		vec_push_back(controllers, (void*) controller);
+		vec_push_back(middlewares, (void*) middleware);
 	}
-	vec_shrink(controllers);
+	vec_shrink(middlewares);
+	controller_t* controller = va_arg(args, controller_t*);
 
-	vroute(router, path, method, controllers);
+	vroute(router, path, method, middlewares, controller);
 	va_end(args);
 }
 
@@ -295,18 +307,19 @@ void route_get(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new();
+	vector_t* middlewares = vec_new();
 
 	while(1) {
-		controller_t *controller = va_arg(args, controller_t*);
-		if(controller == ROUTE_END) {
+		middleware_t *middleware = va_arg(args, middleware_t*);
+		if(middleware == MID_END) {
 			break;
 		}
-		vec_push_back(controllers, (void*) controller);
+		vec_push_back(middlewares, (void*) middleware);
 	}
-	vec_shrink(controllers);
+	vec_shrink(middlewares);
+	controller_t* controller = va_arg(args, controller_t*);
 
-	vroute(router, path, "GET", controllers);
+	vroute(router, path, "GET", middlewares, controller);
 	va_end(args);
 }
 
@@ -315,18 +328,19 @@ void route_post(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new();
+	vector_t* middlewares = vec_new();
 
 	while(1) {
-		controller_t *controller = va_arg(args, controller_t*);
-		if(controller == ROUTE_END) {
+		middleware_t *middleware = va_arg(args, middleware_t*);
+		if(middleware == MID_END) {
 			break;
 		}
-		vec_push_back(controllers, (void*) controller);
+		vec_push_back(middlewares, (void*) middleware);
 	}
-	vec_shrink(controllers);
+	vec_shrink(middlewares);
+	controller_t* controller = va_arg(args, controller_t*);
 
-	vroute(router, path, "POST", controllers);
+	vroute(router, path, "POST", middlewares, controller);
 	va_end(args);
 }
 
@@ -335,18 +349,19 @@ void route_put(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new();
+	vector_t* middlewares = vec_new();
 
 	while(1) {
-		controller_t *controller = va_arg(args, controller_t*);
-		if(controller == ROUTE_END) {
+		middleware_t *middleware = va_arg(args, middleware_t*);
+		if(middleware == MID_END) {
 			break;
 		}
-		vec_push_back(controllers, (void*) controller);
+		vec_push_back(middlewares, (void*) middleware);
 	}
-	vec_shrink(controllers);
+	vec_shrink(middlewares);
+	controller_t* controller = va_arg(args, controller_t*);
 
-	vroute(router, path, "PUT", controllers);
+	vroute(router, path, "PUT", middlewares, controller);
 	va_end(args);
 }
 
@@ -355,17 +370,18 @@ void route_delete(router_t *router, const char *path, ...)
 	va_list args;
 	va_start(args, path);
 
-	vector_t* controllers = vec_new();
+	vector_t* middlewares = vec_new();
 
 	while(1) {
-		controller_t *controller = va_arg(args, controller_t*);
-		if(controller == ROUTE_END) {
+		middleware_t *middleware = va_arg(args, middleware_t*);
+		if(middleware == MID_END) {
 			break;
 		}
-		vec_push_back(controllers, (void*) controller);
+		vec_push_back(middlewares, (void*) middleware);
 	}
-	vec_shrink(controllers);
+	vec_shrink(middlewares);
+	controller_t* controller = va_arg(args, controller_t*);
 
-	vroute(router, path, "DELETE", controllers);
+	vroute(router, path, "DELETE", middlewares, controller);
 	va_end(args);
 }

@@ -27,9 +27,8 @@
 typedef struct {
 	u_int16_t status;
 	hmap_t *headers;
-	char *body;
+	const char *body;
 	bool sent; // To check if response has already been sent
-	bool next; // To transfer control to the next middleware
 	int client; // To identify who to send the response to
 } res_t;
 
@@ -57,9 +56,8 @@ void mime_init(void);
  * already true.
  *
  * @param res Response
- * @param body Body to be sent in the response
  */
-void res_send(res_t *res, char* body);
+void res_send(res_t *res);
 
 /**
  * @brief Send a file to the client.
@@ -75,7 +73,7 @@ void res_send(res_t *res, char* body);
  * @param res Response
  * @param path Absolute path of the file.
  */
-void res_send_file(res_t *res, char *path);
+void res_send_file(res_t *res, const char *path);
 
 /* Utility */
 

@@ -11,8 +11,7 @@
 #include "req.h"
 #include "res.h"
 
-void next(res_t *res);
-
 typedef void (controller_t) (req_t *req, res_t *res);
+typedef controller_t middleware_t;
 
 #endif
