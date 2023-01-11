@@ -33,11 +33,14 @@ void middle(req_t *req, res_t *res) {
 int main() {
 	server_t *app = server_new();
 
-	route_post(app, "/hello/:id/world", blah, ROUTE_END);
 	route_get(app, "/hello/*", middle, hi, ROUTE_END);
 	route_get(app, "/hello/bye", hi, ROUTE_END);
 	route_get(app, "/:file", adios, ROUTE_END);
 	route_get(app, "/", frontend, ROUTE_END);
+
+	route(app, "/foo", "*", frontend, ROUTE_END);
+
+	route_post(app, "/hello/:id/world", blah, ROUTE_END);
 
 	server_listen(app, 3000);
 	return 0;
